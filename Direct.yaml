@@ -1,20 +1,22 @@
 # NAME: DIRECT
 payload:
+  - DOMAIN-SUFFIX,ibllc.com
+  - DOMAIN-SUFFIX,wise.com
+  - DOMAIN-SUFFIX,ibkr.com
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com
+  - DOMAIN-SUFFIX,googleapis.cn
   - DOMAIN-KEYWORD,ikuai
   - DOMAIN-KEYWORD,rustdesk
-  - DOMAIN-SUFFIX,ibllc.com
   - DOMAIN-KEYWORD,fusionbank
   - DOMAIN-KEYWORD,welab
   - DOMAIN-KEYWORD,zajourney
   - DOMAIN-KEYWORD,za.group
   - DOMAIN-KEYWORD,cncbinternational
-  - DOMAIN-SUFFIX,wise.com
   - DOMAIN-KEYWORD,saasexch
   - DOMAIN-KEYWORD,ant-hkbank
   - DOMAIN-KEYWORD,airstar
   - DOMAIN-KEYWORD,alipay
   - DOMAIN-KEYWORD,ifastgb
-  - DOMAIN-SUFFIX,ibkr.com
   - DOMAIN-KEYWORD,livibank
   - DOMAIN-KEYWORD,mcdonalds
   - DOMAIN-KEYWORD,bankera
@@ -23,5 +25,3 @@ payload:
   - DOMAIN-KEYWORD,hsbc
   - DOMAIN-KEYWORD,hangseng
   - DOMAIN-KEYWORD,outlook
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com
-  - DOMAIN-SUFFIX,googleapis.cn

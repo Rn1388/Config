@@ -3,8 +3,6 @@ payload:
   - DOMAIN-SUFFIX,ibllc.com
   - DOMAIN-SUFFIX,wise.com
   - DOMAIN-SUFFIX,ibkr.com
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com
-  - DOMAIN-SUFFIX,googleapis.cn
   - DOMAIN-KEYWORD,ikuai
   - DOMAIN-KEYWORD,rustdesk
   - DOMAIN-KEYWORD,fusionbank

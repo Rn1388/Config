@@ -23,5 +23,5 @@ payload:
   - DOMAIN-KEYWORD,hsbc
   - DOMAIN-KEYWORD,hangseng
   - DOMAIN-KEYWORD,outlook
-  - DOMAIN-SUFFIX:xn--ngstr-lra8j.com
-  - DOMAIN-SUFFIX:googleapis.cn
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com
+  - DOMAIN-SUFFIX,googleapis.cn

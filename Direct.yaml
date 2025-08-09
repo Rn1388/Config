@@ -1,8 +1,17 @@
 # NAME: DIRECT
 payload:
+  - DOMAIN-SUFFIX,iphone-ld.apple.com
+  - DOMAIN-SUFFIX,lcdn-locator.apple.com
+  - DOMAIN-SUFFIX,lcdn-registration.apple.com
+  - DOMAIN-SUFFIX,push.apple.com
+  - DOMAIN-SUFFIX,sf-express.com
+  - DOMAIN-SUFFIX,aliyuncs.com
   - DOMAIN-SUFFIX,ibllc.com
   - DOMAIN-SUFFIX,wise.com
   - DOMAIN-SUFFIX,ibkr.com
+  - DOMAIN-KEYWORD,mmstat
+  - DOMAIN-KEYWORD,alipan
+  - DOMAIN-KEYWORD,jieyicloud
   - DOMAIN-KEYWORD,ikuai
   - DOMAIN-KEYWORD,rustdesk
   - DOMAIN-KEYWORD,fusionbank

@@ -1,5 +1,6 @@
 # NAME: DIRECT
 payload:
+  # Apple LBS
   - DOMAIN-SUFFIX,iphone-ld.apple.com
   - DOMAIN-SUFFIX,lcdn-locator.apple.com
   - DOMAIN-SUFFIX,lcdn-registration.apple.com

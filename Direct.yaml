@@ -26,7 +26,7 @@ payload:
   - DOMAIN-KEYWORD,ifastgb
   - DOMAIN-KEYWORD,livibank
   - DOMAIN-KEYWORD,mcdonalds
-  - DOMAIN-KEYWORD,bankera
+  #- DOMAIN-KEYWORD,bankera
   - DOMAIN-KEYWORD,bochk
   - DOMAIN-KEYWORD,ocbc
   - DOMAIN-KEYWORD,hsbc

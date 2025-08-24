@@ -6,3 +6,5 @@ payload:
   - DOMAIN-KEYWORD,helium
   - DOMAIN-KEYWORD,schwab
   - DOMAIN-KEYWORD,ultramobile
+  - DOMAIN-SUFFIX,yimg.com
+  - DOMAIN-KEYWORD,yahoo

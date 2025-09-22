@@ -8,3 +8,5 @@ payload:
   - DOMAIN-KEYWORD,ultramobile
   - DOMAIN-SUFFIX,yimg.com
   - DOMAIN-KEYWORD,yahoo
+  - DOMAIN-SUFFIX,tello.com
+  - DOMAIN-KEYWORD,numberbarn

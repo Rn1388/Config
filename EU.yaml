@@ -22,6 +22,10 @@ payload:
   - DOMAIN-SUFFIX,byabcde.com
   - DOMAIN-SUFFIX,byapps.net
   - DOMAIN-SUFFIX,byd3c3.com
+  - DOMAIN-SUFFIX,monese.com
+  - DOMAIN-SUFFIX,mexc.com
+  - DOMAIN-SUFFIX,gmcc234.pub.3gppnetwork.org
+  - IP-CIDR,87.194.0.0/16
 
 
 

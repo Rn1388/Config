@@ -22,6 +22,7 @@ payload:
   - DOMAIN-SUFFIX,byabcde.com
   - DOMAIN-SUFFIX,byapps.net
   - DOMAIN-SUFFIX,byd3c3.com
+  - DOMAIN-KEYWORD,kraken
   - DOMAIN-SUFFIX,monese.com
   - DOMAIN-SUFFIX,mexc.com
   - DOMAIN-SUFFIX,gmcc234.pub.3gppnetwork.org

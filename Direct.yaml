@@ -34,3 +34,5 @@ payload:
   - DOMAIN-KEYWORD,hangseng
   - DOMAIN-KEYWORD,outlook
   - DOMAIN-KEYWORD,asusgo
+  - IP-CIDR,100.64.0.0/10
+  - DOMAIN-SUFFIX,ts.net

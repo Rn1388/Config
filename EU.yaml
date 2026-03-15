@@ -14,6 +14,13 @@ payload:
   - DOMAIN-SUFFIX,monese.com
   - DOMAIN-SUFFIX,mexc.com
   - DOMAIN-SUFFIX,gmcc234.pub.3gppnetwork.org
+  - DOMAIN-SUFFIX,de.sentry.io
+  - DOMAIN-SUFFIX,customer.io
+  - DOMAIN-SUFFIX,crowdin.net
+  - DOMAIN-KEYWORD,cdp-eu
+  - DOMAIN-KEYWORD,lemfi
+  - DOMAIN-SUFFIX,lemonade.finance
+  - DOMAIN-SUFFIX,tuyo.com
   - IP-CIDR,87.194.0.0/16
 
 

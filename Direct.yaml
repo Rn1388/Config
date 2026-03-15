@@ -35,4 +35,6 @@ payload:
   - DOMAIN-KEYWORD,outlook
   - DOMAIN-KEYWORD,asusgo
   - DOMAIN-SUFFIX,ts.net
+  - DOMAIN-SUFFIX,524105.xyz
+  - DOMAIN-SUFFIX,453198.xyz
   - IP-CIDR,100.64.0.0/10

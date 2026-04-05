@@ -30,9 +30,11 @@ payload:
   #- DOMAIN-KEYWORD,bankera
   - DOMAIN-KEYWORD,bochk
   - DOMAIN-KEYWORD,ocbc
-  - DOMAIN-KEYWORD,hsbc
+  - DOMAIN-SUFFIX,hsbc.com
+  - DOMAIN-SUFFIX,hsbc.com.hk
   - DOMAIN-KEYWORD,hangseng
-  - DOMAIN-KEYWORD,outlook
+  - DOMAIN-SUFFIX,outlook.com
+  - DOMAIN-SUFFIX,outlook.live.com
   - DOMAIN-KEYWORD,asusgo
   - DOMAIN-SUFFIX,ts.net
   - DOMAIN-SUFFIX,524105.xyz

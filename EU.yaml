@@ -2,8 +2,8 @@
 payload:
   - DOMAIN-KEYWORD,trading212
   - DOMAIN-SUFFIX,n26.com
-  - DOMAIN-KEYWORD,tech26
-  - DOMAIN-KEYWORD,number26
+  - DOMAIN-SUFFIX,tech26.de
+  - DOMAIN-SUFFIX,number26.de
   - DOMAIN-KEYWORD,giffgaff
   - DOMAIN-KEYWORD,simyo
   - DOMAIN-KEYWORD,vodafone

@@ -9,3 +9,5 @@ payload:
   - DOMAIN-KEYWORD,yahoo
   - DOMAIN-SUFFIX,tello.com
   - DOMAIN-KEYWORD,numberbarn
+  - DOMAIN-SUFFIX,skywork.ai
+  - DOMAIN-SUFFIX,skyworkcdn.com

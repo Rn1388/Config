@@ -22,3 +22,10 @@ payload:
   - DOMAIN-SUFFIX,lemonade.finance
   - DOMAIN-SUFFIX,tuyo.com
   - IP-CIDR,87.194.0.0/16
+  - DOMAIN-SUFFIX,trbo.com
+  - DOMAIN-SUFFIX,spatialbuzz.com
+  - DOMAIN-KEYWORD,api-o2de
+  - DOMAIN-SUFFIX,usercentrics.eu
+  - DOMAIN-SUFFIX,o2online.de
+  - DOMAIN-SUFFIX,o9.de
+  - DOMAIN-SUFFIX,telefonica.de

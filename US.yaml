@@ -11,3 +11,4 @@ payload:
   - DOMAIN-KEYWORD,numberbarn
   - DOMAIN-SUFFIX,skywork.ai
   - DOMAIN-SUFFIX,skyworkcdn.com
+  - DOMAIN-SUFFIX,push.apple.com

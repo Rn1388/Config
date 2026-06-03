@@ -21,4 +21,4 @@ payload:
   - DOMAIN-SUFFIX,thinkorswim.com
   - DOMAIN-SUFFIX,tdameritrade.com
   - DOMAIN-SUFFIX,schwabameritrade.com
-  
+  - DOMAIN-KEYWORD,firstrade

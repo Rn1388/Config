@@ -29,3 +29,7 @@ payload:
   - DOMAIN-SUFFIX,o2online.de
   - DOMAIN-SUFFIX,o9.de
   - DOMAIN-SUFFIX,telefonica.de
+  - DOMAIN-SUFFIX,eu.sardine.ai
+  - DOMAIN-SUFFIX,bunq.com
+  - DOMAIN-KEYWORD,plasma
+  

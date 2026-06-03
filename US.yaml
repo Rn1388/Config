@@ -3,7 +3,6 @@ payload:
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com
   - DOMAIN-SUFFIX,services.googleapis.cn
   - DOMAIN-KEYWORD,perplexity
-  - DOMAIN-KEYWORD,schwab
   - DOMAIN-KEYWORD,ultramobile
   - DOMAIN-SUFFIX,yimg.com
   - DOMAIN-KEYWORD,yahoo
@@ -13,3 +12,13 @@ payload:
   - DOMAIN-SUFFIX,skyworkcdn.com
   - DOMAIN-SUFFIX,push.apple.com
   - DOMAIN-KEYWORD,firstrade
+  - DOMAIN-SUFFIX,interactivebrokers.com
+  - DOMAIN-SUFFIX,ibkr.com
+  - DOMAIN-SUFFIX,ibkr.info
+  - DOMAIN-SUFFIX,ibkrcampus.com
+  - DOMAIN-SUFFIX,ibkrguides.com
+  - DOMAIN-SUFFIX,schwab.com
+  - DOMAIN-SUFFIX,thinkorswim.com
+  - DOMAIN-SUFFIX,tdameritrade.com
+  - DOMAIN-SUFFIX,schwabameritrade.com
+  

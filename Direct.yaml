@@ -11,7 +11,7 @@ payload:
   - DOMAIN-KEYWORD,alipan
   - DOMAIN-KEYWORD,jieyicloud
   - DOMAIN-KEYWORD,ikuai
-  - DOMAIN-KEYWORD,rustdesk
+  #- DOMAIN-KEYWORD,rustdesk
   - DOMAIN-KEYWORD,fusionbank
   - DOMAIN-KEYWORD,welab
   - DOMAIN-KEYWORD,zajourney

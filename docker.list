@@ -29,12 +29,12 @@ DOMAIN-SUFFIX,registry.k8s.io
 DOMAIN-SUFFIX,k8s.io
 
 # ---------- AWS ECR ----------
-DOMAIN-SUFFIX,ecr.aws
-DOMAIN-SUFFIX,amazonaws.com
+#DOMAIN-SUFFIX,ecr.aws
+#DOMAIN-SUFFIX,amazonaws.com
 
 # ---------- Microsoft ----------
-DOMAIN-SUFFIX,azurecr.io
-DOMAIN-SUFFIX,mcr.microsoft.com
+#DOMAIN-SUFFIX,azurecr.io
+#DOMAIN-SUFFIX,mcr.microsoft.com
 
 # ---------- GitLab ----------
 DOMAIN-SUFFIX,gitlab.com

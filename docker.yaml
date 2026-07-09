@@ -30,13 +30,13 @@ payload:
   - DOMAIN-SUFFIX,k8s.io
 
   # ---------- AWS ECR ----------
-  - DOMAIN-SUFFIX,ecr.aws                 # public.ecr.aws
-  - DOMAIN-SUFFIX,amazonaws.com           # *.dkr.ecr.<region>.amazonaws.com（较宽，按需保留）
+#  - DOMAIN-SUFFIX,ecr.aws                 # public.ecr.aws
+#  - DOMAIN-SUFFIX,amazonaws.com           # *.dkr.ecr.<region>.amazonaws.com（较宽，按需保留）
 
   # ---------- Microsoft ----------
-  - DOMAIN-SUFFIX,azurecr.io              # *.azurecr.io
-  - DOMAIN,mcr.microsoft.com
-  - DOMAIN-SUFFIX,mcr.microsoft.com
+#  - DOMAIN-SUFFIX,azurecr.io              # *.azurecr.io
+#  - DOMAIN,mcr.microsoft.com
+#  - DOMAIN-SUFFIX,mcr.microsoft.com
 
   # ---------- GitLab ----------
   - DOMAIN-SUFFIX,gitlab.com              # registry.gitlab.com

@@ -1,0 +1,48 @@
+# NAME: Container_Registry
+# DESC: 容器镜像仓库域名合集（Docker Hub / GHCR / Quay / GCR / ECR / ACR / GitLab 等）
+#       供 Watchtower 等自动更新工具拉取镜像时走指定节点使用
+# TYPE: Clash rule-provider (behavior: classical)
+# UPDATED: 2026-07-08
+payload:
+  # ---------- Docker Hub ----------
+  - DOMAIN-SUFFIX,docker.io            # registry-1 / auth / index.docker.io 等
+  - DOMAIN-SUFFIX,docker.com           # production.cloudflare.docker.com 等
+  - DOMAIN-SUFFIX,dockerhub.com
+  - DOMAIN-SUFFIX,compose-spec.io
+  - DOMAIN,d1q6f0aelx0por.cloudfront.net
+  - DOMAIN,d2wy8f7a9ursnm.cloudfront.net
+  - DOMAIN,d36jcksde1wxzq.cloudfront.net
+
+  # ---------- GitHub Container Registry (含 lscr.io 重定向) ----------
+  - DOMAIN-SUFFIX,ghcr.io
+  - DOMAIN-SUFFIX,lscr.io
+  - DOMAIN-SUFFIX,githubusercontent.com   # pkg-containers.githubusercontent.com 等
+  - DOMAIN-SUFFIX,githubapp.com
+
+  # ---------- Quay (Red Hat) ----------
+  - DOMAIN-SUFFIX,quay.io
+  - DOMAIN-SUFFIX,redhat.com              # registry.access.redhat.com 等
+
+  # ---------- Google (GCR / Artifact Registry / k8s) ----------
+  - DOMAIN-SUFFIX,gcr.io                  # k8s.gcr.io / us.gcr.io / eu.gcr.io 等
+  - DOMAIN-SUFFIX,pkg.dev                 # *-docker.pkg.dev (Artifact Registry)
+  - DOMAIN-SUFFIX,registry.k8s.io
+  - DOMAIN-SUFFIX,k8s.io
+
+  # ---------- AWS ECR ----------
+  - DOMAIN-SUFFIX,ecr.aws                 # public.ecr.aws
+  - DOMAIN-SUFFIX,amazonaws.com           # *.dkr.ecr.<region>.amazonaws.com（较宽，按需保留）
+
+  # ---------- Microsoft ----------
+  - DOMAIN-SUFFIX,azurecr.io              # *.azurecr.io
+  - DOMAIN,mcr.microsoft.com
+  - DOMAIN-SUFFIX,mcr.microsoft.com
+
+  # ---------- GitLab ----------
+  - DOMAIN-SUFFIX,gitlab.com              # registry.gitlab.com
+
+  # ---------- 其它常见仓库 ----------
+  - DOMAIN-SUFFIX,registry.opensuse.org
+  - DOMAIN-SUFFIX,cr.fluentbit.io
+  - DOMAIN-SUFFIX,jfrog.io                # *.jfrog.io Artifactory
+  - DOMAIN-SUFFIX,cloudsmith.io

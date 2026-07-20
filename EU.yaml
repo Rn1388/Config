@@ -32,3 +32,15 @@ payload:
   - DOMAIN-SUFFIX,eu.sardine.ai
   - DOMAIN-SUFFIX,bunq.com
   - DOMAIN-SUFFIX,lava.xyz
+  # MetaMask 分流规则
+  # ---------- MetaMask Card / money 卡服务 ----------
+  - DOMAIN-SUFFIX,baanx.com
+  - DOMAIN-SUFFIX,baanx.io
+  - DOMAIN-SUFFIX,monavate.com
+  # ---------- MetaMask 钱包 & 核心服务 ----------
+  - DOMAIN-SUFFIX,metamask.io
+  - DOMAIN-SUFFIX,metamask-institutional.io
+  # Consensys (母公司相关服务) & Swap 后端
+  - DOMAIN-SUFFIX,consensys.io
+  - DOMAIN-SUFFIX,consensys.net
+  - DOMAIN-SUFFIX,codefi.network

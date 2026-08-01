@@ -14,11 +14,11 @@ Surge 的 `.list` 与 Clash 的 `behavior: classical` + `format: text` 格式完
 | 文件 | 策略组 | 条数 | 说明 |
 |---|---|---|---|
 | `ipcheck.list` | IP检查 | 67 | 通用 IP 查询 / 设备指纹 / 风控 SDK |
-| `eu.list` | 欧洲 | 59 | ether.fi、MetaMask、MEXC、n26、欧洲运营商、自用 KYC |
-| `direct.list` | 直连 | 36 | 港澳银行、阿里系、IBKR 中国网关、Apple 国内 CDN |
-| `crypto.list` | 虚拟币 | 19 | Bybit 全家(含混淆域名) |
-| `us.list` | 美国 | 15 | IBKR 官网、Schwab、美国 MVNO |
-| `proxy.list` | 节点选择 | 5 | IBKR TWS、deepseek、moomoo |
+| `eu.list` | 欧洲 | 69 | ether.fi、MetaMask、MEXC、n26、欧洲运营商、自用 KYC |
+| `direct.list` | 直连 | 42 | 港澳银行、阿里系、IBKR 中国网关、Apple 国内 CDN |
+| `crypto.list` | 虚拟币 | 23 | Bybit 全家(含混淆域名) |
+| `us.list` | 美国 | 17 | IBKR 官网、Schwab、美国 MVNO |
+| `proxy.list` | 节点选择 | 6 | IBKR TWS、deepseek、moomoo |
 | `douyin.list` | 抖音 | 4 | |
 | `ng.list` | 尼日利亚 | 3 | gov.ng、LemFi |
 | `hk.list` | 香港 | 2 | fluidkey、CTM 澳门电讯 |
@@ -26,7 +26,6 @@ Surge 的 `.list` 与 Clash 的 `behavior: classical` + `format: text` 格式完
 | `google.list` | 谷歌服务 | 2 | Google Play punycode 域名 |
 | `apple.list` | 苹果服务 | 1 | push.apple.com |
 | `twitter.list` | T | 1 | tapbots |
-| `eu-ip.list` | 欧洲 | 1 | IP 类规则,引用时必须带 `no-resolve` |
 | `jp/kr/sg/tw.list` | 日本/韩国/新加坡/台湾 | 预留 | 空文件,直接追加即可 |
 
 ## 已废弃的旧规则集
@@ -35,7 +34,7 @@ Surge 的 `.list` 与 Clash 的 `behavior: classical` + `format: text` 格式完
 
 | 旧文件 | 并入 | 备注 |
 |---|---|---|
-| `EU.yaml` | `eu.list` + `eu-ip.list` | 其中 `IP-CIDR,87.194.0.0/16` 拆到 eu-ip.list |
+| `EU.yaml` | `eu.list` | 含 `IP-CIDR,87.194.0.0/16`,已并入 eu.list 第 ⑫ 区 |
 | `US.yaml` | `us.list` | 三组归属调整见下 |
 | `Direct.yaml` | `direct.list` | 新增 ikuai / asusgo;`ts.net` 未并入,见下 |
 | `HK.yaml` | `hk.list` | |

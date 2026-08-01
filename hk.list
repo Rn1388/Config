@@ -1,8 +1,0 @@
-# 香港 —— 自定义规则
-# 引用:RULE-SET,<base>/rules/hk.list,香港,extended-matching
-# 合并自:HK.yaml(已废弃)
-# 最后更新:2026-08-01
-
-DOMAIN-SUFFIX,fluidkey.com
-# CTM 澳门电讯
-DOMAIN-SUFFIX,ctm.net

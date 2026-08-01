@@ -1,0 +1,11 @@
+# 欧洲(IP 类)—— 自定义规则
+# 引用时必须带 no-resolve,否则每个域名都会触发一次 DNS 解析来比对 IP,拖慢匹配:
+#   Surge: RULE-SET,<base>/rules/eu-ip.list,欧洲,no-resolve
+#   Clash: - RULE-SET,EU-IP-Custom,欧洲,no-resolve
+# 合并自:EU.yaml 中混在域名规则里的 IP-CIDR(已废弃)
+# 最后更新:2026-08-01
+#
+# 域名规则请放 eu.list,不要混在这里 —— 混放会强制整个规则集 no-resolve。
+
+# giffgaff(英国 MVNO)专用网段
+IP-CIDR,87.194.0.0/16

@@ -1,35 +1,19 @@
 # IP 检查 / 地理定位 / 设备指纹风控 —— 通用规则集
-# 生成: 2026-07-31 | 域名可达性已实测验证
+# 引用:RULE-SET,<base>/rules/ipcheck.list,IP检查,extended-matching
+# 最后更新:2026-08-01
 #
-# 【三家通用】Surge / Loon / Clash(OpenClash) 都能直接用这一个文件。
-# 全部使用单行注释, 无行尾注释, 无 AND 逻辑规则 —— 保证 Clash 解析不出错。
+# 【三家通用】Surge / Loon / Clash 都能直接用这一个文件。
+# Clash 需配 behavior: classical + format: text
 #
-# ---------------- 引用方法 ----------------
+# 【本次变更】以下 4 条已移出到 eu.list,跟随欧洲业务而非本组:
+#   sumsub.com / bureau.id / noah.com / noah.io
+# 理由:它们是特定业务的合规端点,应跟随该业务的策略组;
+#      本文件只保留任何 App 都可能调用的【通用】检测服务。
+#   sardine.ai 保留在此(通用风控 SDK,虽然 ether.fi 也在用)
 #
-# [Surge]  放在 [Rule] 段最前面
-#   RULE-SET,https://你的地址/ipcheck.list,你的锁定策略组
-#
-# [Loon]   放在 [Remote Rule] 段
-#   https://你的地址/ipcheck.list, policy=你的锁定策略组, tag=IP检查, enabled=true
-#
-# [Clash / OpenClash]  用 rule-provider, 注意 format 必须是 text
-#   rule-providers:
-#     ipcheck:
-#       type: http
-#       behavior: classical
-#       format: text
-#       url: "https://你的地址/ipcheck.list"
-#       path: ./ruleset/ipcheck.list
-#       interval: 86400
-#   rules:
-#     - RULE-SET,ipcheck,你的锁定策略组      # 必须放在 rules 最前面
-#
-# 若嫌 classical 性能低, 用同目录的 ipcheck-clash.yaml (behavior: domain, 匹配更快)
-#
-# ---------------- 一个必须知道的前提 ----------------
-# 实测 Uniswap / Aave / GMX / Hyperliquid, 客户端一次 IP 查询都没有 ——
-# 它们的地域封锁在服务端/CDN 边缘做, 设备上抓不到, 分流规则管不了。
-# 客户端能抓到的(如 ether.fi App 调 ipinfo.io)是少数, 但这少数你必须控好。
+# 【前提】实测 Uniswap / Aave / GMX / Hyperliquid,客户端一次 IP 查询都没有 ——
+# 它们的地域封锁在服务端/CDN 边缘做,设备上抓不到,分流规则管不了。
+# 客户端能抓到的(如 ether.fi App 调 ipinfo.io)是少数,但这少数必须控好。
 
 
 # ==========================================================
@@ -101,23 +85,14 @@ DOMAIN-SUFFIX,arkoselabs.com
 DOMAIN,challenges.cloudflare.com
 
 # ==========================================================
-# C. KYC / 身份验证 / 出入金合规 —— 提交材料与转账时核对 IP 地区
+# C. KYC / 身份验证(通用厂商,自用的已移到 eu.list)
 # ==========================================================
-#DOMAIN-SUFFIX,sumsub.com
 DOMAIN-SUFFIX,onfido.com
 DOMAIN-SUFFIX,withpersona.com
 DOMAIN-SUFFIX,veriff.me
 DOMAIN-SUFFIX,veriff.com
 DOMAIN-SUFFIX,netverify.com
 DOMAIN-SUFFIX,jumio.com
-DOMAIN-SUFFIX,bureau.id
-
-# NOAH —— 稳定币跨境支付基础设施, 提供虚拟 IBAN 账户与法币出入金
-# 本身不是 KYC 厂商, 但做托管式 onboarding, KYC 底层同样是 Sumsub
-# 涉及银行账户与跨境转账, 地区敏感度最高, 务必和主业务同一出口
-# 实测存在: api / app / checkout / docs / faq .noah.com
-DOMAIN-SUFFIX,noah.com
-DOMAIN-SUFFIX,noah.io
 
 # ==========================================================
 # D. 自测工具站 —— 也必须走同一出口, 否则测了白测

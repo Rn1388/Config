@@ -1,4 +1,4 @@
- 节点选择 —— 自定义规则
+# 节点选择 —— 自定义规则
 # 引用:RULE-SET,<base>/rules/proxy.list,节点选择,extended-matching
 # 合并自:SG.yaml(已废弃,其中 moomoo 原本就指向「节点选择」)
 # 最后更新:2026-08-01

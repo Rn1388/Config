@@ -1,0 +1,10 @@
+# 抖音 —— 自定义规则
+# 引用:RULE-SET,<base>/rules/douyin.list,抖音,extended-matching
+# 最后更新:2026-08-01
+# 注:原配置中 DOMAIN-KEYWORD,douyin 出现两次,已去重
+
+DOMAIN-SUFFIX,douyin.com
+DOMAIN-SUFFIX,iesdouyin.com
+DOMAIN-SUFFIX,douyinliving.com
+# keyword 作兜底,上面三条精确匹配优先
+DOMAIN-KEYWORD,douyin

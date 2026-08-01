@@ -1,0 +1,79 @@
+# 直连 —— 自定义规则
+# 引用:RULE-SET,<base>/rules/direct.list,直连,extended-matching
+# 合并自:Direct.yaml(已废弃)
+# 最后更新:2026-08-01
+
+# ---- Apple 国内 CDN(须在第三方 Apple 规则集之前生效)----
+DOMAIN-SUFFIX,iphone-ld.apple.com
+DOMAIN-SUFFIX,lcdn-locator.apple.com
+DOMAIN-SUFFIX,lcdn-registration.apple.com
+
+# ---- 港澳银行 ----
+DOMAIN-SUFFIX,hsbc.com
+DOMAIN-SUFFIX,hsbc.com.hk
+DOMAIN-KEYWORD,hangseng
+DOMAIN-KEYWORD,bochk
+# Mox Bank(渣打旗下虚拟银行)
+DOMAIN-SUFFIX,mox.com
+# 平安壹账通银行
+DOMAIN-SUFFIX,paob.com.hk
+DOMAIN-KEYWORD,cncbinternational
+DOMAIN-KEYWORD,livibank
+DOMAIN-KEYWORD,airstar
+DOMAIN-KEYWORD,welab
+DOMAIN-KEYWORD,fusionbank
+DOMAIN-KEYWORD,ant-hkbank
+# ↑ 查证:Ant Bank(香港)实际域名是 antbank.hk,不含连字符,
+#   上面这条 keyword 从未命中过。保留它以防有含 ant-hkbank 的内部接口,
+#   下面补上真实域名。
+DOMAIN-SUFFIX,antbank.hk
+DOMAIN-KEYWORD,ifastgb
+DOMAIN-KEYWORD,saasexch
+DOMAIN-KEYWORD,ocbc
+# Bankera 立陶宛银行 —— 按属地应属欧洲,此处依你 Surge 主配置的手写归为直连。
+# eu.list 里留有注释掉的对照版本,想改回欧洲时两处一起调。
+DOMAIN-KEYWORD,bankera
+# ZA Bank(众安)
+DOMAIN-KEYWORD,zajourney
+# 原为 DOMAIN-KEYWORD,za.group —— 完整域名用 keyword 是类型用错,会匹配 pizza.group.xxx
+DOMAIN-SUFFIX,za.group
+
+# ---- IBKR 中国网关 ----
+# 注:原有 DOMAIN,mcgw1.ibllc.com.cn 已删,被下面的 suffix 完全覆盖
+DOMAIN-SUFFIX,ibllc.com.cn
+DOMAIN-SUFFIX,ibkr.com.cn
+DOMAIN-SUFFIX,interactivebrokers.com.cn
+
+# ---- 阿里系 ----
+DOMAIN-KEYWORD,alipay
+DOMAIN-KEYWORD,alipan
+DOMAIN-SUFFIX,mmstat.com
+DOMAIN-SUFFIX,aliyuncs.com
+
+# ---- 微软 / 其他 ----
+DOMAIN-SUFFIX,outlook.com
+DOMAIN-SUFFIX,outlook.live.com
+DOMAIN-SUFFIX,wise.com
+DOMAIN-SUFFIX,sf-express.com
+DOMAIN-KEYWORD,jieyicloud
+DOMAIN-KEYWORD,mcdonalds
+# ↑ 可命中 mcdonalds.com.cn(官网),但命不中麦当劳中国 App 的后端 mcd.cn,
+#   已实测 www./api./cdn.mcd.cn 均在服务。注意 keyword 也会把美国官网
+#   mcdonalds.com 带成直连,在国外用 App 时需留意。
+DOMAIN-SUFFIX,mcd.cn
+# 以下两条来自 Direct.yaml
+DOMAIN-KEYWORD,ikuai
+DOMAIN-KEYWORD,asusgo
+
+
+
+# ---- 域名 ----
+DOMAIN,cdn.813798.xyz
+DOMAIN-SUFFIX,524105.xyz
+DOMAIN-SUFFIX,453198.xyz
+DOMAIN-SUFFIX,xuanyuan.me
+
+# ---- 说明:ts.net 不在此处 ----
+# Direct.yaml 原有 DOMAIN-SUFFIX,ts.net -> 直连,与 Surge 主配置的 Tailscale 组冲突。
+# Tailscale 属设备级配置,已约定两端各自在主配置本地处理:
+#   Surge -> Tailscale 策略组   Stash -> 直连

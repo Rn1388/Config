@@ -1,0 +1,10 @@
+# 台湾 —— 自定义规则(预留,暂无内容)
+# 引用:RULE-SET,<base>/rules/tw.list,台湾,extended-matching
+# 合并自:TW.yaml(已废弃 —— 原文件 payload 为空,Clash 加载会报错)
+# 最后更新:2026-08-01
+#
+# 直接在下面追加规则即可,主配置无需改动。
+# placeholder.invalid 是 RFC 2606 保留后缀,永不解析、永不误伤,
+# 仅用于保证规则集非空(Clash 空 payload 会报错)。加入真实规则后可删。
+
+DOMAIN,placeholder.invalid

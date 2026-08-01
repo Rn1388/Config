@@ -1,0 +1,200 @@
+# 欧洲 —— 自定义规则
+# 通用格式:Surge (.list) / Loon / Clash (behavior: classical + format: text)
+# 引用:RULE-SET,<base>/rules/eu.list,欧洲,extended-matching
+# IP 类规则见同目录 eu-ip.list(引用时须带 no-resolve)
+# 合并自:EU.yaml(已废弃)
+# 最后更新:2026-08-01
+#
+# 【文件内顺序说明】
+# 规则集内部的先后不影响匹配结果 —— 本表所有域名互不重叠,DOMAIN-SUFFIX 按后缀精确匹配,
+# 不存在谁截胡谁的问题。分区排序纯粹为了可读与好维护:
+# 出问题时先看 ①,改动风险最高的也是 ①。
+
+
+# ==========================================================
+# ① KYC / 身份认证 —— 风控关键区 ★
+#
+#    这批必须与你的 KYC 注册地(欧洲)保持同一出口。
+#    出口一变 = 登录地区与证件属地不符 = 触发风控。
+#    改动前务必确认「欧洲」组是 select 手选单一节点,
+#    不能用 url-test / fallback / load-balance(IP 每次都变)。
+# ==========================================================
+
+# Sumsub —— KYC 证件与人脸核验。原在 ipcheck.list,你已注释掉那条改走固定规则
+DOMAIN-SUFFIX,sumsub.com
+
+# Bureau —— 身份风控评分。原在 ipcheck.list,一并移来跟随欧洲业务
+DOMAIN-SUFFIX,bureau.id
+
+# NOAH —— 稳定币跨境支付基础设施,提供虚拟 IBAN 与法币出入金。
+# 本身不是 KYC 厂商,但做托管式 onboarding,KYC 底层同样是 Sumsub。
+# 涉及银行账户与跨境转账,每次转账都在做合规检查,地区敏感度最高。
+DOMAIN-SUFFIX,noah.com
+DOMAIN-SUFFIX,noah.io
+
+# Turnkey —— 嵌入式钱包签名授权
+DOMAIN-SUFFIX,turnkey.com
+
+# Privy —— 嵌入式钱包 + 身份认证(Turnkey 的竞品),
+# 邮箱/社交登录生成钱包、私钥分片托管。参与登录认证并记录 IP,跟随 Plasma One 走欧洲。
+# 【注意】Privy 的域名不区分调用方,GMX / Hyperliquid 等也用同一个 auth.privy.io,
+#         归到这里后它们的 Privy 登录也会走欧洲。Privy 账户是 per-app 隔离的,
+#         互不影响,只要各自出口保持稳定即可。
+DOMAIN-SUFFIX,privy.io
+
+# 注:sardine.ai(设备指纹风控)保留在 ipcheck.list,属通用 SDK,此处不重复。
+#     ether.fi 的白标域名 sd.prod.eu.ether.fi 由下面 ② 的 ether.fi 后缀覆盖。
+
+
+# ==========================================================
+# ② ether.fi
+# ==========================================================
+DOMAIN-SUFFIX,ether.fi
+# keyword 兜底,接住 etherfi.gitbook.io / etherfi.onelink.me 这类非 ether.fi 后缀的域名
+DOMAIN-KEYWORD,etherfi
+
+
+# ==========================================================
+# ③ Plasma(稳定币 L1 公链 XPL)+ Plasma One(稳定币新银行,带 Visa 卡与 KYC)
+# ==========================================================
+# 实测在服务:www / api / app / docs / rpc / n / one .plasma.to,以及 plasmascan.to(区块浏览器)
+# plasma-one.tech 是 Plasma One 的独立域名,plasma.to 后缀覆盖不到,必须单列
+DOMAIN-SUFFIX,plasma.to
+DOMAIN-SUFFIX,plasmascan.to
+DOMAIN-SUFFIX,plasma-one.tech
+# 兜底 keyword:不用裸 plasma(会误伤 plasmapay / kdeplasma / 血浆捐献类站点),
+# 改用足够独特的组合,既能接住未知新域名又不误伤
+DOMAIN-KEYWORD,plasma-one
+DOMAIN-KEYWORD,plasmascan
+
+
+# ==========================================================
+# ④ 银行 / 新型金融
+# ==========================================================
+DOMAIN-SUFFIX,revolut.com
+# Revolut 的第二域名,实测在用,原配置遗漏
+DOMAIN-SUFFIX,revolut.codes
+DOMAIN-SUFFIX,bunq.com
+DOMAIN-SUFFIX,bunq.me
+DOMAIN-SUFFIX,monese.com
+DOMAIN-SUFFIX,tuyo.com
+DOMAIN-SUFFIX,n26.com
+DOMAIN-SUFFIX,tech26.de
+DOMAIN-SUFFIX,number26.de
+DOMAIN-KEYWORD,trading212
+
+# LemFi(前身 Lemonade Finance,非洲汇款)
+# 公司主营非洲市场,但你的 KYC 属地为欧洲,故走欧洲而非尼日利亚
+# 原为 DOMAIN-KEYWORD,lemfi,会误伤,已收紧为精确后缀
+DOMAIN-SUFFIX,lemfi.com
+# lemonade.finance 实测已无响应(LemFi 改名后疑似下线),保留作兼容
+DOMAIN-SUFFIX,lemonade.finance
+
+
+# ==========================================================
+# ⑤ MetaMask Card / 卡服务
+# ==========================================================
+DOMAIN-SUFFIX,baanx.com
+DOMAIN-SUFFIX,baanx.io
+DOMAIN-SUFFIX,monavate.com
+
+
+# ==========================================================
+# ⑥ MetaMask 钱包 & Consensys
+# ==========================================================
+DOMAIN-SUFFIX,metamask.io
+DOMAIN-SUFFIX,metamask-institutional.io
+DOMAIN-SUFFIX,consensys.io
+DOMAIN-SUFFIX,consensys.net
+DOMAIN-SUFFIX,codefi.network
+
+
+# ==========================================================
+# ⑦ 交易所
+# ==========================================================
+# MEXC 抹茶
+DOMAIN-SUFFIX,mexc.com
+DOMAIN-SUFFIX,mexc.co
+DOMAIN-SUFFIX,mexc.fm
+DOMAIN-SUFFIX,mexc.io
+DOMAIN-SUFFIX,mexc.live
+DOMAIN-SUFFIX,mexglobal.com
+DOMAIN-SUFFIX,mxc.com
+DOMAIN-SUFFIX,mxc.cm
+# 实测在用,原配置遗漏
+DOMAIN-SUFFIX,mexc.exchange
+
+# 原为 DOMAIN-KEYWORD,kraken,会误伤 krakenfiles.com / krakend.io,已收紧
+DOMAIN-SUFFIX,kraken.com
+# Bybit 欧洲站 —— 其余 Bybit 域名在 crypto.list(顶级域不同,互不干扰)
+DOMAIN-SUFFIX,bybit.eu
+DOMAIN-KEYWORD,coinbase
+
+
+# ==========================================================
+# ⑧ 德国 O2 / Telefonica
+# ==========================================================
+DOMAIN-SUFFIX,o2online.de
+DOMAIN-SUFFIX,o9.de
+DOMAIN-SUFFIX,telefonica.de
+DOMAIN-SUFFIX,trbo.com
+DOMAIN-SUFFIX,spatialbuzz.com
+DOMAIN-KEYWORD,api-o2de
+
+
+# ==========================================================
+# ⑨ 欧洲运营商
+# ==========================================================
+DOMAIN-KEYWORD,giffgaff
+DOMAIN-SUFFIX,gmcc234.pub.3gppnetwork.org
+DOMAIN-KEYWORD,simyo
+# 原为 DOMAIN-KEYWORD,vodafone —— 会把 vodafone.com.eg(埃及)、vodafone.com.tr(土耳其)
+# 也带到欧洲节点,已收紧为德国站。若日后要用英国站,另加 DOMAIN-SUFFIX,vodafone.co.uk
+DOMAIN-SUFFIX,vodafone.de
+
+
+# ==========================================================
+# ⑩ 欧洲区服务端点 / 客服 / 埋点
+# ==========================================================
+DOMAIN-SUFFIX,eu.intercom.io
+DOMAIN-SUFFIX,nexus-websocket-a.intercom.io
+DOMAIN-SUFFIX,eu.amplitude.com
+DOMAIN-SUFFIX,de.sentry.io
+DOMAIN-SUFFIX,customer.io
+DOMAIN,cdn.branch.io
+DOMAIN-SUFFIX,crowdin.net
+DOMAIN-SUFFIX,usercentrics.eu
+# Expo EAS Update —— React Native 的 OTA 热更新,App 启动时来这里查新 JS bundle。
+# 不参与风控。此处只覆盖 u.expo.dev,未扩到 expo.dev 全域(维持原配置)。
+DOMAIN-SUFFIX,u.expo.dev
+
+
+# ==========================================================
+# ⑪ 其他
+# ==========================================================
+# Kast
+DOMAIN-SUFFIX,kastofficial.zendesk.com
+DOMAIN-SUFFIX,kastapi.com
+DOMAIN-SUFFIX,lava.xyz
+# Vercel 免费部署域名,非稳定资产,失效时可删
+DOMAIN-SUFFIX,api-gateway-xi-nine.vercel.app
+
+
+# ==========================================================
+# ⑫ 备注区 —— 停用与未纳入的域名(备查,不产生任何匹配)
+# ==========================================================
+#
+# walletconnect.org / .com / reown.com / web3modal.org
+#   已移至 crypto.list。它是钱包与 dApp 之间的加密中继,
+#   业务方看不到你连 relay 的 IP,不参与风控,没必要锁在欧洲。
+#
+# bankera
+#   Bankera 是立陶宛银行,按属地应走欧洲;
+#   但你在 Surge 主配置里手写为「直连」,已按此归入 direct.list。
+#   若改主意走欧洲:取消下面注释,同时删掉 direct.list 里的同名规则。
+#   # DOMAIN-KEYWORD,bankera
+#
+# knock.app / api.knock.app
+#   Knock,通知编排 SaaS(App 内通知 / 邮件 / 短信 / 推送的触发逻辑)。
+#   不参与风控,当前无规则命中,走 FINAL 兜底。若日后要归到欧洲,
+#   在此处加 DOMAIN-SUFFIX,knock.app 即可。

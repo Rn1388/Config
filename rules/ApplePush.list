@@ -1,5 +1,5 @@
 # 苹果服务 —— 自定义规则
-# 引用:RULE-SET,<base>/rules/apple.list,苹果服务,extended-matching
+# 引用:RULE-SET,<base>/rules/ApplePush.list,苹果服务,extended-matching
 # 合并自:US.yaml 中的 push.apple.com(原归美国,现归专用组)
 # 最后更新:2026-08-01
 

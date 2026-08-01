@@ -1,9 +1,0 @@
-# 尼日利亚 —— 自定义规则
-# 引用:RULE-SET,<base>/rules/ng.list,尼日利亚,extended-matching
-# 合并自:NG.yaml(已废弃)
-# 最后更新:2026-08-01
-
-DOMAIN-SUFFIX,gov.ng
-
-# 注:LemFi / lemonade.finance 曾考虑归此处(公司主营非洲汇款),
-#     但用户 KYC 属地为欧洲,故保留在 eu.list。

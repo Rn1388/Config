@@ -1,9 +1,0 @@
-# 谷歌服务 —— 自定义规则
-# 引用:RULE-SET,<base>/rules/google.list,谷歌服务,extended-matching
-# 合并自:US.yaml 中的 Google Play 两条(原归美国,现归专用组)
-# 最后更新:2026-08-01
-# 注:必须在第三方 Google 规则集之前引用
-
-# Google Play(punycode 域名)
-DOMAIN-SUFFIX,xn--ngstr-lra8j.com
-DOMAIN-SUFFIX,services.googleapis.cn

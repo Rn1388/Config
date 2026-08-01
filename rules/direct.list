@@ -30,12 +30,11 @@ DOMAIN-SUFFIX,antbank.hk
 DOMAIN-KEYWORD,ifastgb
 DOMAIN-KEYWORD,saasexch
 DOMAIN-KEYWORD,ocbc
-# Bankera 立陶宛银行 —— 按属地应属欧洲,此处依你 Surge 主配置的手写归为直连。
+# Bankera 立陶宛银行 —— 按属地应属欧洲。
 # eu.list 里留有注释掉的对照版本,想改回欧洲时两处一起调。
 DOMAIN-KEYWORD,bankera
 # ZA Bank(众安)
 DOMAIN-KEYWORD,zajourney
-# 原为 DOMAIN-KEYWORD,za.group —— 完整域名用 keyword 是类型用错,会匹配 pizza.group.xxx
 DOMAIN-SUFFIX,za.group
 
 # ---- IBKR 中国网关 ----
@@ -61,7 +60,7 @@ DOMAIN-KEYWORD,mcdonalds
 #   已实测 www./api./cdn.mcd.cn 均在服务。注意 keyword 也会把美国官网
 #   mcdonalds.com 带成直连,在国外用 App 时需留意。
 DOMAIN-SUFFIX,mcd.cn
-# 以下两条来自 Direct.yaml
+#
 DOMAIN-KEYWORD,ikuai
 DOMAIN-KEYWORD,asusgo
 
@@ -73,7 +72,3 @@ DOMAIN-SUFFIX,524105.xyz
 DOMAIN-SUFFIX,453198.xyz
 DOMAIN-SUFFIX,xuanyuan.me
 
-# ---- 说明:ts.net 不在此处 ----
-# Direct.yaml 原有 DOMAIN-SUFFIX,ts.net -> 直连,与 Surge 主配置的 Tailscale 组冲突。
-# Tailscale 属设备级配置,已约定两端各自在主配置本地处理:
-#   Surge -> Tailscale 策略组   Stash -> 直连

@@ -1,0 +1,53 @@
+# 虚拟币 —— 自定义规则
+# 引用:RULE-SET,<base>/rules/crypto.list,虚拟币,extended-matching
+# 最后更新:2026-08-01
+# 注:bybit.eu(欧洲站)在 eu.list 中,引用顺序在本文件之前,行为与原配置一致
+
+# ==========================================================
+# WalletConnect / Reown —— 所有 Web3 钱包连接的通用基础设施
+# 同一家公司:WalletConnect 2024 年改名 Reown,web3modal 是旧 SDK 名(现 AppKit),
+# 代码里新旧域名混用,四个都要留。
+# 实测 ether.fi / Hyperliquid / GMX 均在调用。
+# 第三方 Cryptocurrency.list(43 条)与 Crypto.list(201 条)都不含这些域名,必须自己写。
+#
+# 关键主机:
+#   relay.walletconnect.org       中继,WebSocket 长连接,签名请求走这里,最关键
+#   api.web3modal.org             弹窗里的钱包列表 / 图标 / 链信息
+#   rpc.walletconnect.org         自带公共 RPC,读余额读合约
+#   explorer-api.walletconnect.com  钱包浏览器(GMX 实测在用)
+#   pulse.walletconnect.org       埋点统计
+#   secure.walletconnect.org      安全 iframe,域名校验防钓鱼
+#   echo.walletconnect.com        手机钱包推送
+#   fonts.reown.com               弹窗字体
+# ==========================================================
+DOMAIN-SUFFIX,walletconnect.org
+DOMAIN-SUFFIX,walletconnect.com
+DOMAIN-SUFFIX,reown.com
+DOMAIN-SUFFIX,web3modal.org
+
+# ---- Bybit 主域名 ----
+DOMAIN-SUFFIX,bybit.com
+DOMAIN-SUFFIX,bybit.biz
+DOMAIN-SUFFIX,bybit-global.com
+DOMAIN-SUFFIX,bybit.cloud
+DOMAIN-SUFFIX,bybit-aws.com
+
+# ---- Bybit 基础设施 / 混淆域名 ----
+DOMAIN-SUFFIX,bycsi.com
+DOMAIN-SUFFIX,bytick.com
+DOMAIN-SUFFIX,byapis.com
+DOMAIN-SUFFIX,bycbe.com
+DOMAIN-SUFFIX,bymj.io
+DOMAIN-SUFFIX,byabcde.com
+DOMAIN-SUFFIX,byapps.net
+DOMAIN-SUFFIX,byd3c3.com
+DOMAIN-SUFFIX,bybdc6.com
+
+# ---- 高度混淆的 hash 域名(抓包确认属于 Bybit,原配置中重复两次已去重)----
+DOMAIN-SUFFIX,ffbbbdc6d3c353211fe2ba39c9f744cd.com
+DOMAIN-SUFFIX,ffe390afd658c19dcbf707e0597b846d.de
+
+# ---- 特定完整域名 ----
+DOMAIN,bybit-exchange.github.io
+DOMAIN,bybit.ada.support
+DOMAIN,monitor-frontend-collector.a.bybit-aws.com

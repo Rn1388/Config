@@ -1,0 +1,118 @@
+# Tailscale —— 自定义规则
+# 引用【必须带 no-resolve】,否则每个域名都会触发 DNS 解析去比对下面的 IP 段:
+#   Surge: RULE-SET,<base>/rules/tailscale.list,Tailscale,no-resolve
+#   Clash: - RULE-SET,Tailscale-Custom,直连,no-resolve
+# 最后更新:2026-08-01
+# 依据:https://tailscale.com/kb/1082/firewall-ports(Last validated: Feb 2, 2026)
+
+
+# ==========================================================
+# ① MagicDNS —— tailnet 内部域名
+#    如 nas.tailxxxx.ts.net,解析结果是 100.64.0.0/10 段虚拟 IP,
+#    流量走 Tailscale 隧道本身,不应再套一层代理。
+# ==========================================================
+DOMAIN-SUFFIX,ts.net
+
+
+# ==========================================================
+# ② 家庭 LAN 网段 —— 经 Tailscale 子网路由回家
+# ==========================================================
+IP-CIDR,192.168.8.0/24
+IP-CIDR,192.168.3.0/24
+IP-CIDR,192.168.88.0/24
+IP-CIDR,192.168.10.0/24
+IP-CIDR,10.0.0.0/8
+
+
+# ==========================================================
+# ③ Tailscale 自身地址段
+#    100.64.0.0/10 是 CGNAT 段,Tailscale 用它做虚拟 IP
+#    fd7a:115c:a1e0::/48 是 Tailscale 的全局固定 IPv6 前缀(所有 tailnet 通用)
+#
+# ⚠️ 这两条在你当前配置下【不会生效】,原因不在规则本身:
+#    [General] 里 tun-excluded-routes = 100.64.0.0/10
+#    该段流量被排除在 Surge TUN 之外,压根不进规则系统。
+#
+#    Mac:这是必须的 —— 排除后 Tailscale 客户端的 utun 才能独占该段路由,
+#         否则两个 VPN 抢路由表。
+#    iOS:没有系统客户端,该段无人接管。因此 iOS 上访问 tailnet 设备请用
+#         MagicDNS 名(走 ① 的域名规则)或家庭局域网 IP(走 ② 的网段规则),
+#         不要用 100.x 裸 IP,那样不通。
+#
+#    保留这两条是为了:哪天去掉 tun-excluded-routes 时它们立即可用,
+#    且不会造成任何副作用。
+# ==========================================================
+IP-CIDR,100.64.0.0/10
+IP-CIDR6,fd7a:115c:a1e0::/48
+
+
+# ==========================================================
+# ④ 关于 tailscale.com —— 有意不写规则,原因记录在此
+# ==========================================================
+#
+# 官方服务域名全在 tailscale.com 后缀下:
+#   console / controlplane / login / log .tailscale.com   协调服务器
+#   derp1-all … derp28-all.tailscale.com                  DERP 中继(编号持续增加)
+#
+# 未写规则时的实际走向,两端相反:
+#   Surge  → 由 Tailscale 客户端进程发起,被 PROCESS-NAME,com.tailscale.ipn.macos
+#            先命中,走「Tailscale」组,默认候选 DIRECT。走不到 FINAL。
+#   Stash  → iOS 无进程概念,PROCESS 规则失效,落 MATCH → 节点选择(走代理)。
+#
+# 【排障提示】若某天设备上不了线、tailnet 整体失效,先查这里:
+#   多半是 DIRECT 连不上 controlplane.tailscale.com。
+#   解法是在主配置里显式加一条走代理:
+#     DOMAIN-SUFFIX,tailscale.com,节点选择
+#   位置必须在 PROCESS-NAME,com.tailscale.ipn.macos 之前,否则被截胡。
+#
+# 官方静态 IP 段(仅在必须用 IP 规则时参考,官方明确不推荐硬编码):
+#   login / controlplane : 192.200.0.0/24    2606:B740:49::/48
+#   log                  : 199.165.136.0/24  2606:B740:1::/48
+
+
+# ==========================================================
+# ⑤ ⚠️ 死锁陷阱 —— Surge 内置 Tailscale 策略
+# ==========================================================
+#
+# 依据官方手册 https://manual.nssurge.com/policy/tailscale.html
+#
+# 「匹配 ControlURL 的规则不能选中正在初始化的 Tailscale 策略,
+#   包括通过策略组间接选中。该递归选择会造成死锁:
+#   策略等待控制连接,控制连接等待同一策略。」
+#
+# 对应到你的配置:
+#   [Proxy]     🛡️tailscale = tailscale, section-name=80CCD707
+#   [Proxy Group] Tailscale = select, DIRECT, 🛡️tailscale
+#
+#   ⚠️ 只要「Tailscale」组当前选中的是 🛡️tailscale,
+#      任何把 tailscale.com 指向该组的规则都会锁死。
+#      本文件的 ts.net / IP 段指向该组是安全的(不涉及 ControlURL),
+#      但 tailscale.com 绝不能指过去 —— 这也是本文件不写它的原因之一。
+#
+#   ⚠️ PROCESS-NAME,com.tailscale.ipn.macos,Tailscale 同理:
+#      系统 Tailscale 客户端要连 controlplane.tailscale.com,
+#      若被送进 🛡️tailscale 会出同样的问题。
+#      → 该组请保持选 DIRECT。
+#
+# 另一个相关字段 underlying-proxy(你当前未配置,默认 DIRECT):
+#   一旦设成非 DIRECT 的策略,Surge 会【禁用直连 UDP 路径】,
+#   peer 流量强制走 DERP 中继,延迟明显升高。除非确有需要,不要动它。
+
+
+# ==========================================================
+# ⑥ 留在主配置本地的部分
+# ==========================================================
+#
+# PROCESS-NAME 两端语法不同,且【iOS 版 Surge 会忽略进程规则】(仅 macOS 有效):
+#   Surge Mac: PROCESS-NAME,com.tailscale.ipn.macos,Tailscale
+#   Stash:     PROCESS-NAME,tailscale,直连  +  DOMAIN-KEYWORD,tailscale,直连
+#
+# 因此 iOS 端 tailscale.com 实际走 FINAL/MATCH → 节点选择,
+# 而 macOS 端被 PROCESS 规则截胡走 Tailscale 组。两端天然不同,不是配置错误。
+#
+# 【UDP 打洞注意】
+#   Tailscale P2P 直连用 UDP 41641(源端口),STUN 探测用 UDP 3478。
+#   QUIC 阻断规则只挡 UDP 443,不影响这两个 ✓
+#   但 [General] 里 udp-policy-not-supported-behaviour = REJECT ——
+#   若这些 UDP 落到不支持 UDP 的节点会被丢弃,打洞失败后退化成 DERP 中继,延迟明显变高。
+#   PROCESS-NAME 指向的组选 DIRECT 即可避开。

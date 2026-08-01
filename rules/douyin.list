@@ -1,7 +1,14 @@
 # 抖音 —— 自定义规则
 # 引用:RULE-SET,<base>/rules/douyin.list,抖音,extended-matching
 # 最后更新:2026-08-01
-# 注:原配置中 DOMAIN-KEYWORD,douyin 出现两次,已去重
+#
+# 【为什么不能删,交给第三方 DouYin.list】
+# 实测第三方规则集只有 13 条,全是 CDN 与字节旁支
+# (douyincdn / douyinpic / douyinstatic / douyinvod / pstatp / snssdk / toutiao / ixigua),
+# 【主域名 douyin.com 根本不在里面】。本表正好补上这个缺口。
+# 反过来,下面的 keyword 已覆盖第三方里所有含 douyin 的域名,
+# 第三方独有的是 amemv.com / pstatp.com / snssdk.com / toutiao.com 这些不带 douyin 字样的。
+# 两者互补,都要保留。
 
 DOMAIN-SUFFIX,douyin.com
 DOMAIN-SUFFIX,iesdouyin.com

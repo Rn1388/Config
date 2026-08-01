@@ -1,5 +1,0 @@
-# T(Twitter)—— 自定义规则
-# 引用:RULE-SET,<base>/rules/twitter.list,T,extended-matching
-# 最后更新:2026-08-01
-
-DOMAIN-SUFFIX,tapbots.com //可以加到proxy？

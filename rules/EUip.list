@@ -1,7 +1,10 @@
 # 欧洲 —— 自定义规则
 # 通用格式:Surge (.list) / Loon / Clash (behavior: classical + format: text)
-# 引用:RULE-SET,<base>/rules/eu.list,欧洲,extended-matching
-# IP 类规则见同目录 eu-ip.list(引用时须带 no-resolve)
+# 引用【必须带 no-resolve】,本表末尾含 IP-CIDR:
+#   Surge: RULE-SET,<base>/rules/eu.list,欧洲,no-resolve,extended-matching
+#   Clash: - RULE-SET,EU-Custom,欧洲,no-resolve
+# 不加 no-resolve 的话,每个域名匹配前都要先做一次 DNS 解析去比对 IP 段,拖慢整条链。
+# no-resolve 只影响 IP 类规则,对上面所有 DOMAIN 规则没有任何影响。
 # 合并自:EU.yaml(已废弃)
 # 最后更新:2026-08-01
 #
@@ -9,7 +12,6 @@
 # 规则集内部的先后不影响匹配结果 —— 本表所有域名互不重叠,DOMAIN-SUFFIX 按后缀精确匹配,
 # 不存在谁截胡谁的问题。分区排序纯粹为了可读与好维护:
 # 出问题时先看 ①,改动风险最高的也是 ①。
-
 
 # ==========================================================
 # ① KYC / 身份认证 —— 风控关键区 ★
@@ -90,14 +92,12 @@ DOMAIN-SUFFIX,lemfi.com
 # lemonade.finance 实测已无响应(LemFi 改名后疑似下线),保留作兼容
 DOMAIN-SUFFIX,lemonade.finance
 
-
 # ==========================================================
 # ⑤ MetaMask Card / 卡服务
 # ==========================================================
 DOMAIN-SUFFIX,baanx.com
 DOMAIN-SUFFIX,baanx.io
 DOMAIN-SUFFIX,monavate.com
-
 
 # ==========================================================
 # ⑥ MetaMask 钱包 & Consensys
@@ -107,7 +107,6 @@ DOMAIN-SUFFIX,metamask-institutional.io
 DOMAIN-SUFFIX,consensys.io
 DOMAIN-SUFFIX,consensys.net
 DOMAIN-SUFFIX,codefi.network
-
 
 # ==========================================================
 # ⑦ 交易所
@@ -126,10 +125,13 @@ DOMAIN-SUFFIX,mexc.exchange
 
 # 原为 DOMAIN-KEYWORD,kraken,会误伤 krakenfiles.com / krakend.io,已收紧
 DOMAIN-SUFFIX,kraken.com
-# Bybit 欧洲站 —— 其余 Bybit 域名在 crypto.list(顶级域不同,互不干扰)
+# Bybit 欧洲站 —— 官方 EU 平台(Bybit EU GmbH,奥地利 FMA 的 MiCA 牌照)
+# 全球站 bybit.com 及其余域名在 crypto.list,顶级域不同,互不干扰
+# 实测 bybit.nl / bybit-eu.com 也可达,但无官方来源佐证,疑似防御性注册,暂不启用:
+#   # DOMAIN-SUFFIX,bybit-eu.com
+DOMAIN-SUFFIX,bybit.nl
 DOMAIN-SUFFIX,bybit.eu
 DOMAIN-KEYWORD,coinbase
-
 
 # ==========================================================
 # ⑧ 德国 O2 / Telefonica
@@ -141,7 +143,6 @@ DOMAIN-SUFFIX,trbo.com
 DOMAIN-SUFFIX,spatialbuzz.com
 DOMAIN-KEYWORD,api-o2de
 
-
 # ==========================================================
 # ⑨ 欧洲运营商
 # ==========================================================
@@ -151,7 +152,6 @@ DOMAIN-KEYWORD,simyo
 # 原为 DOMAIN-KEYWORD,vodafone —— 会把 vodafone.com.eg(埃及)、vodafone.com.tr(土耳其)
 # 也带到欧洲节点,已收紧为德国站。若日后要用英国站,另加 DOMAIN-SUFFIX,vodafone.co.uk
 DOMAIN-SUFFIX,vodafone.de
-
 
 # ==========================================================
 # ⑩ 欧洲区服务端点 / 客服 / 埋点
@@ -168,7 +168,6 @@ DOMAIN-SUFFIX,usercentrics.eu
 # 不参与风控。此处只覆盖 u.expo.dev,未扩到 expo.dev 全域(维持原配置)。
 DOMAIN-SUFFIX,u.expo.dev
 
-
 # ==========================================================
 # ⑪ 其他
 # ==========================================================
@@ -179,9 +178,15 @@ DOMAIN-SUFFIX,lava.xyz
 # Vercel 免费部署域名,非稳定资产,失效时可删
 DOMAIN-SUFFIX,api-gateway-xi-nine.vercel.app
 
+# ==========================================================
+# ⑫ IP 类规则(合并自原 eu-ip.list)
+#    放在域名规则之后,引用行的 no-resolve 只对本段生效
+# ==========================================================
+# giffgaff(英国 MVNO)专用网段
+IP-CIDR,87.194.0.0/16
 
 # ==========================================================
-# ⑫ 备注区 —— 停用与未纳入的域名(备查,不产生任何匹配)
+# ⑬ 备注区 —— 停用与未纳入的域名(备查,不产生任何匹配)
 # ==========================================================
 #
 # walletconnect.org / .com / reown.com / web3modal.org

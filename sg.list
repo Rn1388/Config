@@ -1,9 +1,0 @@
-# 新加坡 —— 自定义规则(预留,暂无内容)
-# 引用:RULE-SET,<base>/rules/sg.list,新加坡,extended-matching
-# 最后更新:2026-08-01
-#
-# 直接在下面追加规则即可,主配置无需改动。
-# placeholder.invalid 是 RFC 2606 保留后缀,永不解析、永不误伤,
-# 仅用于保证规则集非空(Clash 空 payload 会报错)。加入真实规则后可删。
-
-DOMAIN,placeholder.invalid

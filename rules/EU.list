@@ -207,3 +207,7 @@ IP-CIDR,87.194.0.0/16,no-resolve
 #   在此处加 DOMAIN-SUFFIX,knock.app 即可。
 
 DOMAIN-SUFFIX,coca.xyz
+# Wirex
+DOMAIN-SUFFIX,wirexapp.com
+DOMAIN-SUFFIX,wirexone.com
+DOMAIN-SUFFIX,wirex.app.link

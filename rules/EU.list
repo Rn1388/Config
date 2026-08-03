@@ -205,3 +205,5 @@ IP-CIDR,87.194.0.0/16,no-resolve
 #   Knock,通知编排 SaaS(App 内通知 / 邮件 / 短信 / 推送的触发逻辑)。
 #   不参与风控,当前无规则命中,走 FINAL 兜底。若日后要归到欧洲,
 #   在此处加 DOMAIN-SUFFIX,knock.app 即可。
+
+DOMAIN-SUFFIX,coca.xyz

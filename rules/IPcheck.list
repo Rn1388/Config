@@ -1,4 +1,4 @@
-# IP 检查 / 地理定位 / 设备指纹风控 —— 通用规则集
+# IP 检查 / 地理定位 / 设备指纹风控 —— 通用规则集+KYC
 # 引用:RULE-SET,<base>/rules/ipcheck.list,IP检查,extended-matching
 # 最后更新:2026-08-01
 #
@@ -102,3 +102,15 @@ DOMAIN-SUFFIX,jumio.com
 #DOMAIN-SUFFIX,browserleaks.com
 #DOMAIN-SUFFIX,dnsleaktest.com
 #DOMAIN-SUFFIX,dnsleak.com
+
+
+# E. KYC
+DOMAIN-SUFFIX,sumsub.com
+DOMAIN-SUFFIX,bureau.id
+DOMAIN-SUFFIX,noah.com
+DOMAIN-SUFFIX,noah.io
+DOMAIN-SUFFIX,turnkey.com
+DOMAIN-SUFFIX,privy.io
+DOMAIN-SUFFIX,ether.fi
+DOMAIN-KEYWORD,etherfi
+

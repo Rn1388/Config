@@ -6,3 +6,6 @@
 DOMAIN-SUFFIX,fluidkey.com
 # CTM 澳门电讯
 DOMAIN-SUFFIX,ctm.net
+# Ether.fi
+DOMAIN-SUFFIX,ether.fi
+DOMAIN-KEYWORD,etherfi

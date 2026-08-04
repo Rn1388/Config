@@ -23,26 +23,26 @@
 # ==========================================================
 
 # Sumsub —— KYC 证件与人脸核验。原在 ipcheck.list,你已注释掉那条改走固定规则
-DOMAIN-SUFFIX,sumsub.com
+#==DOMAIN-SUFFIX,sumsub.com
 
 # Bureau —— 身份风控评分。原在 ipcheck.list,一并移来跟随欧洲业务
-DOMAIN-SUFFIX,bureau.id
+#==DOMAIN-SUFFIX,bureau.id
 
 # NOAH —— 稳定币跨境支付基础设施,提供虚拟 IBAN 与法币出入金。
 # 本身不是 KYC 厂商,但做托管式 onboarding,KYC 底层同样是 Sumsub。
 # 涉及银行账户与跨境转账,每次转账都在做合规检查,地区敏感度最高。
-DOMAIN-SUFFIX,noah.com
-DOMAIN-SUFFIX,noah.io
+#==DOMAIN-SUFFIX,noah.com
+#==DOMAIN-SUFFIX,noah.io
 
 # Turnkey —— 嵌入式钱包签名授权
-DOMAIN-SUFFIX,turnkey.com
+#==DOMAIN-SUFFIX,turnkey.com
 
 # Privy —— 嵌入式钱包 + 身份认证(Turnkey 的竞品),
 # 邮箱/社交登录生成钱包、私钥分片托管。参与登录认证并记录 IP,跟随 Plasma One 走欧洲。
 # 【注意】Privy 的域名不区分调用方,GMX / Hyperliquid 等也用同一个 auth.privy.io,
 #         归到这里后它们的 Privy 登录也会走欧洲。Privy 账户是 per-app 隔离的,
 #         互不影响,只要各自出口保持稳定即可。
-DOMAIN-SUFFIX,privy.io
+#==DOMAIN-SUFFIX,privy.io
 
 # 注:sardine.ai(设备指纹风控)保留在 ipcheck.list,属通用 SDK,此处不重复。
 #     ether.fi 的白标域名 sd.prod.eu.ether.fi 由下面 ② 的 ether.fi 后缀覆盖。
@@ -51,9 +51,9 @@ DOMAIN-SUFFIX,privy.io
 # ==========================================================
 # ② ether.fi
 # ==========================================================
-DOMAIN-SUFFIX,ether.fi
+#==DOMAIN-SUFFIX,ether.fi
 # keyword 兜底,接住 etherfi.gitbook.io / etherfi.onelink.me 这类非 ether.fi 后缀的域名
-DOMAIN-KEYWORD,etherfi
+#==DOMAIN-KEYWORD,etherfi
 
 
 # ==========================================================

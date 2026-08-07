@@ -1,5 +1,17 @@
 # Special —— 自定义规则
-
+#bunq
 DOMAIN-SUFFIX,bunq.com
 DOMAIN-SUFFIX,bunq.me
+IP-CIDR,185.40.108.0/22,no-resolve
+
+#kraken
+# ⚠️ 精确规则必须在后缀规则【之前】(Clash 自上而下,首个匹配生效)
+# krak-api.kraken.com 是 Krak 的后端(AWS 伦敦),不能跟着 Kraken 走
+DOMAIN,krak-api.kraken.com
+
+# Krak App 本体 + Monavate 发卡(登录/卡/3DS 都在 krak.com)
+DOMAIN-SUFFIX,krak.com
+DOMAIN-SUFFIX,monavate.com
+
+# Kraken 交易所全部子域
 DOMAIN-SUFFIX,kraken.com

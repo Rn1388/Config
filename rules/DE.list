@@ -1,8 +1,8 @@
-# 欧洲 —— 自定义规则
+# 德国 —— 自定义规则
 # 通用格式:Surge (.list) / Loon / Clash (behavior: classical + format: text)
 # 引用【必须带 no-resolve】,本表末尾含 IP-CIDR:
-#   Surge: RULE-SET,<base>/rules/eu.list,欧洲,no-resolve,extended-matching
-#   Clash: - RULE-SET,EU-Custom,欧洲,no-resolve
+#   Surge: RULE-SET,<base>/rules/de.list,德国,no-resolve,extended-matching
+#   Clash: - RULE-SET,de-Custom,德国,no-resolve
 # 不加 no-resolve 的话,每个域名匹配前都要先做一次 DNS 解析去比对 IP 段,拖慢整条链。
 # no-resolve 只影响 IP 类规则,对上面所有 DOMAIN 规则没有任何影响。
 # 合并自:EU.yaml(已废弃)

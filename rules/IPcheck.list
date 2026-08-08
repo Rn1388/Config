@@ -120,9 +120,3 @@ DOMAIN-SUFFIX,sardine.ai
 # ↑ Sardine 设备指纹+行为生物识别,抓 VPN/地理/时区不一致
 DOMAIN-SUFFIX,nsureapi.com
 # ↑ nSure.ai 支付反欺诈,交易时查 IP/VPN/GEO(含 sdk./sdk-service.)
-
-# ---- 分析埋点(带设备/IP 信号,一并收敛避免泄漏别国)----
-DOMAIN-SUFFIX,segment.io
-DOMAIN-SUFFIX,app-analytics-services.com
-DOMAIN-SUFFIX,sentry.io
-DOMAIN-SUFFIX,launchdarkly.com

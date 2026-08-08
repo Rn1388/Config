@@ -10,6 +10,7 @@ DOMAIN-SUFFIX,monavate.com
 
 # ---- Krak / Kraken 官方域(API、feed、登录、客服全覆盖)----
 DOMAIN-SUFFIX,kraken.com
+DOMAIN-KEYWORD,Kraken
 
 # ---- Krak App 独立域 + 卡发行方(用卡/绑卡流程触发)----
 DOMAIN-SUFFIX,krak.com

@@ -15,3 +15,9 @@ DOMAIN-KEYWORD,Kraken
 # ---- Krak App 独立域 + 卡发行方(用卡/绑卡流程触发)----
 DOMAIN-SUFFIX,krak.com
 DOMAIN-SUFFIX,monavate.com
+
+# bankera
+#   Bankera 是立陶宛银行,按属地应走欧洲;
+#   但你在 Surge 主配置里手写为「直连」,已按此归入 direct.list。
+#   若改主意走欧洲:取消下面注释,同时删掉 direct.list 里的同名规则。
+DOMAIN-KEYWORD,bankera

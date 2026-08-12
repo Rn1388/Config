@@ -1,62 +1,75 @@
 # undirect.list
 # for shadowrocket
 # 本应被 ChinaMax / GEOIP,CN 判为直连，但需强制走代理的服务
-# 场景：出口在香港，抖音 / 小红书 / AlipayHK 需经香港节点而非直连
+# 场景：出口在香港，抖音 / 小红书 / AlipayHK 需经香港节点
 #
-# 用法（必须置于配置 [Rule] 段所有 CN 直连规则之前）：
-#   RULE-SET,https://raw.githubusercontent.com/Rn1388/Config/refs/heads/main/rules/undirect.list,HK
+# 定位：blackmatrix7 上游规则集的【补充层】，只收录上游漏掉的域名
+#   上游 XiaoHongShu.list 仅 4 条、DouYin.list 仅 13 条，且均停更于 2025-06-06
+#   本文件负责补齐，与上游一起引用：
+#     RULE-SET,.../Shadowrocket/DouYin/DouYin.list,HK
+#     RULE-SET,.../Shadowrocket/XiaoHongShu/XiaoHongShu.list,HK
+#     RULE-SET,.../Shadowrocket/AliPay/AliPay.list,HK
+#     RULE-SET,.../Rn1388/Config/.../undirect.list,HK
 #
-# 说明：本文件不含策略字段，策略由上面 RULE-SET 行末尾指定
-# 配套：主配置需同时启用 HTTPDNS 拦截段，否则 App 会用纯 IP 绕过本规则集
-# Updated: 2026-08-11
- 
-# ========== 抖音 / 字节跳动核心 ==========
+# 必须置于配置 [Rule] 段所有 CN 直连规则之前
+# 本文件不含策略字段，策略由 RULE-SET 行末尾指定
+# Updated: 2026-08-12（依据 2026-08-12 抓包日志修订）
+
+# ========== 小红书 / RedNote 新主域（上游缺失，属地判定的关键）==========
+# edith.rnote.com 是核心 API，原 edith.xiaohongshu.com，IP 属地由此接口判定
+DOMAIN-SUFFIX,rnote.com
+DOMAIN-SUFFIX,rednotecdn.com
+DOMAIN-SUFFIX,xiaohongshu.net
+DOMAIN-SUFFIX,xhsstatic.com
+DOMAIN-SUFFIX,yhgfb-cn-static.com
+DOMAIN-SUFFIX,askdiandian.com
+DOMAIN-SUFFIX,fegine.com
+DOMAIN-SUFFIX,redbascket.com
+
+# ========== 抖音主域（上游缺失）==========
 DOMAIN-SUFFIX,douyin.com
-DOMAIN-SUFFIX,douyincdn.com
 DOMAIN-SUFFIX,douyinliving.com
-DOMAIN-SUFFIX,douyinpic.com
-DOMAIN-SUFFIX,douyinstatic.com
-DOMAIN-SUFFIX,douyinvod.com
-DOMAIN-SUFFIX,idouyinvod.com
 DOMAIN-SUFFIX,iesdouyin.com
-DOMAIN-SUFFIX,amemv.com
 DOMAIN-SUFFIX,awemecdn.com
 DOMAIN-SUFFIX,awemepic.com
 DOMAIN-SUFFIX,awemeughun.com
-DOMAIN-SUFFIX,snssdk.com
- 
-# ========== 字节基础设施 ==========
+
+# ========== 字节基础设施（上游缺失，日志实测大量走直连）==========
 DOMAIN-SUFFIX,bytedance.com
 DOMAIN-SUFFIX,bytedance.net
 DOMAIN-SUFFIX,byteacctimg.com
 DOMAIN-SUFFIX,byteactivity.com
 DOMAIN-SUFFIX,bytecdn.cn
 DOMAIN-SUFFIX,bytecdn.com
+DOMAIN-SUFFIX,byted-static.com
 DOMAIN-SUFFIX,bytednsdoc.com
 DOMAIN-SUFFIX,byteeffecttos.com
 DOMAIN-SUFFIX,bytegecko.com
 DOMAIN-SUFFIX,bytegoofy.com
+DOMAIN-SUFFIX,bytehwm.com
 DOMAIN-SUFFIX,byteimg.com
+DOMAIN-SUFFIX,bytemaimg.com
 DOMAIN-SUFFIX,bytemastatic.com
 DOMAIN-SUFFIX,byteoversea.com
 DOMAIN-SUFFIX,bytescm.com
 DOMAIN-SUFFIX,bytetos.com
 DOMAIN-SUFFIX,ibytedapm.com
-DOMAIN-SUFFIX,pstatp.com
+DOMAIN-SUFFIX,isnssdk.com
+DOMAIN-SUFFIX,toutiaoapi.com
 DOMAIN-SUFFIX,zijieapi.com
 DOMAIN-SUFFIX,zjcdn.com
 DOMAIN-SUFFIX,zjurl.cn
 DOMAIN-SUFFIX,xycdn.com
 DOMAIN-SUFFIX,volcvideo.com
 DOMAIN-SUFFIX,vlabvod.com
- 
+
 # ========== 抖音电商 ==========
 DOMAIN-SUFFIX,ecombdapi.com
 DOMAIN-SUFFIX,ecombdimg.com
+DOMAIN-SUFFIX,ecombdpage.com
 DOMAIN-SUFFIX,ecombdstatic.com
- 
-# ========== 头条 / 西瓜（与抖音共用账号与推荐后端）==========
-DOMAIN-SUFFIX,toutiao.com
+
+# ========== 头条 / 西瓜 / 汽水（与抖音共用账号后端）==========
 DOMAIN-SUFFIX,toutiaocdn.com
 DOMAIN-SUFFIX,toutiaocdn.net
 DOMAIN-SUFFIX,toutiaoimg.com
@@ -64,22 +77,10 @@ DOMAIN-SUFFIX,toutiaopage.com
 DOMAIN-SUFFIX,toutiaostatic.com
 DOMAIN-SUFFIX,toutiaovod.com
 DOMAIN-SUFFIX,pglstatp-toutiao.com
-DOMAIN-SUFFIX,ixigua.com
-DOMAIN-SUFFIX,ixiguavideo.com
- 
-# ========== 小红书 ==========
-DOMAIN-SUFFIX,xiaohongshu.com
-DOMAIN-SUFFIX,xiaohongshu.net
-DOMAIN-SUFFIX,xhscdn.com
-DOMAIN-SUFFIX,xhsstatic.com
-DOMAIN-SUFFIX,fegine.com
-DOMAIN-SUFFIX,redbascket.com
- 
-# ========== AlipayHK ==========
+DOMAIN-SUFFIX,qishui.com
+DOMAIN-SUFFIX,baike.com
+
+# ========== AlipayHK 补充（上游 AliPay.list 已覆盖绝大部分）==========
 DOMAIN-SUFFIX,alipayhk.com
-DOMAIN-SUFFIX,alipay.hk
-DOMAIN-SUFFIX,alipayplus.com
-# 以下两条为内地支付宝共用域名；若同时使用内地支付宝，注释掉这两行
-DOMAIN-SUFFIX,alipayobjects.com
-DOMAIN-SUFFIX,alipay.com
+
 

@@ -3,38 +3,47 @@
 # 本应被 ChinaMax / GEOIP,CN 判为直连，但需强制走代理的服务
 # 场景：出口在香港，抖音 / 小红书 / AlipayHK 需经香港节点
 #
-# 定位：blackmatrix7 上游规则集的【补充层】，只收录上游漏掉的域名
-#   上游 XiaoHongShu.list 仅 4 条、DouYin.list 仅 13 条，且均停更于 2025-06-06
-#   本文件负责补齐，与上游一起引用：
-#     RULE-SET,.../Shadowrocket/DouYin/DouYin.list,HK
-#     RULE-SET,.../Shadowrocket/XiaoHongShu/XiaoHongShu.list,HK
-#     RULE-SET,.../Shadowrocket/AliPay/AliPay.list,HK
-#     RULE-SET,.../Rn1388/Config/.../undirect.list,HK
-#
-# 必须置于配置 [Rule] 段所有 CN 直连规则之前
+# 【自包含】本文件不依赖任何上游规则集，配置端只需一行：
+#   RULE-SET,https://raw.githubusercontent.com/Rn1388/Config/refs/heads/main/rules/undirect.list,HK
+# 必须置于 [Rule] 段所有 CN 直连规则（DOMAIN-SUFFIX,cn / ChinaMax / GEOIP,CN）之前
 # 本文件不含策略字段，策略由 RULE-SET 行末尾指定
-# Updated: 2026-08-12（依据 2026-08-12 抓包日志修订）
-
-# ========== 小红书 / RedNote 新主域（上游缺失，属地判定的关键）==========
-# edith.rnote.com 是核心 API，原 edith.xiaohongshu.com，IP 属地由此接口判定
+#
+# 已合并 blackmatrix7 的 DouYin(13) / XiaoHongShu(4) / AliPay(21) 全部条目，
+# 三者均停更于 2025-06-06，不再单独引用，避免版本错配导致域名落空。
+# Updated: 2026-08-12（依据 11:17 与 11:45 两份实测日志修订）
+ 
+# ========== 小红书 / RedNote ==========
+# edith.rnote.com 为核心 API（原 edith.xiaohongshu.com），IP 属地由此接口判定
 DOMAIN-SUFFIX,rnote.com
 DOMAIN-SUFFIX,rednotecdn.com
+DOMAIN-SUFFIX,xiaohongshu.com
 DOMAIN-SUFFIX,xiaohongshu.net
+DOMAIN-SUFFIX,xhscdn.com
+DOMAIN-SUFFIX,xhscdn.net
 DOMAIN-SUFFIX,xhsstatic.com
 DOMAIN-SUFFIX,yhgfb-cn-static.com
 DOMAIN-SUFFIX,askdiandian.com
+DOMAIN-SUFFIX,fengkongcloud.com
 DOMAIN-SUFFIX,fegine.com
 DOMAIN-SUFFIX,redbascket.com
-
-# ========== 抖音主域（上游缺失）==========
+ 
+# ========== 抖音 ==========
 DOMAIN-SUFFIX,douyin.com
+DOMAIN-SUFFIX,douyincdn.com
 DOMAIN-SUFFIX,douyinliving.com
+DOMAIN-SUFFIX,douyinpic.com
+DOMAIN-SUFFIX,douyinstatic.com
+DOMAIN-SUFFIX,douyinvod.com
+DOMAIN-SUFFIX,idouyinvod.com
 DOMAIN-SUFFIX,iesdouyin.com
+DOMAIN-SUFFIX,amemv.com
 DOMAIN-SUFFIX,awemecdn.com
 DOMAIN-SUFFIX,awemepic.com
 DOMAIN-SUFFIX,awemeughun.com
-
-# ========== 字节基础设施（上游缺失，日志实测大量走直连）==========
+DOMAIN-SUFFIX,snssdk.com
+DOMAIN-SUFFIX,isnssdk.com
+ 
+# ========== 字节基础设施 ==========
 DOMAIN-SUFFIX,bytedance.com
 DOMAIN-SUFFIX,bytedance.net
 DOMAIN-SUFFIX,byteacctimg.com
@@ -54,7 +63,7 @@ DOMAIN-SUFFIX,byteoversea.com
 DOMAIN-SUFFIX,bytescm.com
 DOMAIN-SUFFIX,bytetos.com
 DOMAIN-SUFFIX,ibytedapm.com
-DOMAIN-SUFFIX,isnssdk.com
+DOMAIN-SUFFIX,pstatp.com
 DOMAIN-SUFFIX,toutiaoapi.com
 DOMAIN-SUFFIX,zijieapi.com
 DOMAIN-SUFFIX,zjcdn.com
@@ -62,14 +71,15 @@ DOMAIN-SUFFIX,zjurl.cn
 DOMAIN-SUFFIX,xycdn.com
 DOMAIN-SUFFIX,volcvideo.com
 DOMAIN-SUFFIX,vlabvod.com
-
+ 
 # ========== 抖音电商 ==========
 DOMAIN-SUFFIX,ecombdapi.com
 DOMAIN-SUFFIX,ecombdimg.com
 DOMAIN-SUFFIX,ecombdpage.com
 DOMAIN-SUFFIX,ecombdstatic.com
-
+ 
 # ========== 头条 / 西瓜 / 汽水（与抖音共用账号后端）==========
+DOMAIN-SUFFIX,toutiao.com
 DOMAIN-SUFFIX,toutiaocdn.com
 DOMAIN-SUFFIX,toutiaocdn.net
 DOMAIN-SUFFIX,toutiaoimg.com
@@ -77,10 +87,33 @@ DOMAIN-SUFFIX,toutiaopage.com
 DOMAIN-SUFFIX,toutiaostatic.com
 DOMAIN-SUFFIX,toutiaovod.com
 DOMAIN-SUFFIX,pglstatp-toutiao.com
+DOMAIN-SUFFIX,ixigua.com
+DOMAIN-SUFFIX,ixiguavideo.com
 DOMAIN-SUFFIX,qishui.com
 DOMAIN-SUFFIX,baike.com
-
-# ========== AlipayHK 补充（上游 AliPay.list 已覆盖绝大部分）==========
+ 
+# ========== AlipayHK（含 blackmatrix7 AliPay.list 全部 21 条）==========
+# amdc.alipay.com 是支付宝自建调度服务（AMDC），会下发 IP 列表，务必代理
 DOMAIN-SUFFIX,alipayhk.com
-
+DOMAIN-SUFFIX,alipay
+DOMAIN-SUFFIX,alipay.cn
+DOMAIN-SUFFIX,alipay.com
+DOMAIN-SUFFIX,alipay.com.cn
+DOMAIN-SUFFIX,alipay.hk
+DOMAIN-SUFFIX,alipay.net
+DOMAIN-SUFFIX,alipay-corp.com
+DOMAIN-SUFFIX,alipay-eco.com
+DOMAIN-SUFFIX,alipay-inc.com
+DOMAIN-SUFFIX,alipay-traffic.com
+DOMAIN-SUFFIX,alipaydesign.com
+DOMAIN-SUFFIX,alipaydev.com
+DOMAIN-SUFFIX,alipaydns.com
+DOMAIN-SUFFIX,alipayeshop.com
+DOMAIN-SUFFIX,alipaylog.com
+DOMAIN-SUFFIX,alipaymo.com
+DOMAIN-SUFFIX,alipayobjects.com
+DOMAIN-SUFFIX,alipayplus.com
+DOMAIN-SUFFIX,ifaa.org.cn
+DOMAIN-SUFFIX,luohanacademy.com
+DOMAIN-SUFFIX,sinopayment.com.cn
 

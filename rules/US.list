@@ -35,3 +35,6 @@ DOMAIN-SUFFIX,yimg.com
 #   xn--ngstr-lra8j.com / services.googleapis.cn -> google.list(谷歌服务)
 #   skywork.ai / skyworkcdn.com                  -> ai.list(人工智能)
 #   push.apple.com                               -> apple.list(苹果服务)
+
+
+DOMAIN-KEYWORD,wellsfargo

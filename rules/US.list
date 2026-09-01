@@ -1,9 +1,13 @@
 # 美国 —— 自定义规则
 # 引用:RULE-SET,<base>/rules/us.list,美国,extended-matching
 # 合并自:US.yaml(已废弃)
-# 最后更新:2026-08-01
+# 最后更新:2026-09-01
+# 说明:全文只用 DOMAIN-SUFFIX / DOMAIN-KEYWORD,Surge / Clash(mihomo)/ Shadowrocket / Loon 通用
+# 原则:能用 suffix 就不用 keyword,避免误伤同名的非美国站点(如 .ca / .co.uk 分站)
 
-# ---- 券商 ----
+# ================================================================
+# 一、券商 / 投资
+# ================================================================
 DOMAIN-KEYWORD,firstrade
 # IBKR 官网 / Client Portal / 下载
 DOMAIN-SUFFIX,interactivebrokers.com
@@ -12,29 +16,296 @@ DOMAIN-SUFFIX,ibkr.info
 DOMAIN-SUFFIX,ibkrcampus.com
 DOMAIN-SUFFIX,ibkrguides.com
 # Charles Schwab / thinkorswim
-# 注:原有的 DOMAIN-KEYWORD,schwab 已删,下面两条 suffix 已完全覆盖
+# 注:原有的 DOMAIN-KEYWORD,schwab 已删,下面几条 suffix 已完全覆盖
 DOMAIN-SUFFIX,schwab.com
 DOMAIN-SUFFIX,schwabameritrade.com
 # 实测在用,原配置遗漏
 DOMAIN-SUFFIX,schwabassetmanagement.com
+DOMAIN-SUFFIX,schwabbank.com
 DOMAIN-SUFFIX,thinkorswim.com
 DOMAIN-SUFFIX,tdameritrade.com
+# Fidelity(含 401k / NetBenefits)
+DOMAIN-SUFFIX,fidelity.com
+DOMAIN-SUFFIX,fidelityinvestments.com
+DOMAIN-SUFFIX,netbenefits.com
+# Vanguard
+DOMAIN-SUFFIX,vanguard.com
+# E*TRADE / Morgan Stanley
+DOMAIN-SUFFIX,etrade.com
+DOMAIN-SUFFIX,etrade.net
+DOMAIN-SUFFIX,morganstanley.com
+DOMAIN-SUFFIX,morganstanleyclientserv.com
+# Merrill Edge(BoA 旗下)
+DOMAIN-SUFFIX,merrill.com
+DOMAIN-SUFFIX,merrilledge.com
+DOMAIN-SUFFIX,ml.com
+# 其它零售券商
+DOMAIN-SUFFIX,robinhood.com
+DOMAIN-SUFFIX,tastytrade.com
+DOMAIN-SUFFIX,tastyworks.com
+DOMAIN-SUFFIX,tradestation.com
+DOMAIN-SUFFIX,webull.com
+DOMAIN-SUFFIX,public.com
+DOMAIN-SUFFIX,m1.com
+DOMAIN-SUFFIX,m1finance.com
+# 智能投顾
+DOMAIN-SUFFIX,betterment.com
+DOMAIN-SUFFIX,wealthfront.com
+DOMAIN-SUFFIX,acorns.com
+DOMAIN-SUFFIX,stash.com
 
-# ---- 美国 MVNO / 号码服务 ----
+# ================================================================
+# 二、大行 / 发卡行(玩美卡主力)
+# ================================================================
+# ---- Chase / JPMorgan ----
+DOMAIN-SUFFIX,chase.com
+DOMAIN-SUFFIX,jpmorgan.com
+DOMAIN-SUFFIX,jpmorganchase.com
+DOMAIN-SUFFIX,jpmorganaccess.com
+# Chase 信用卡客服/对账单入口
+DOMAIN-SUFFIX,cardmemberservices.com
+
+# ---- Capital One ----
+DOMAIN-SUFFIX,capitalone.com
+DOMAIN-SUFFIX,capitalone360.com
+DOMAIN-SUFFIX,capitalonetravel.com
+DOMAIN-SUFFIX,capitaloneshopping.com
+
+# ---- Bank of America ----
+DOMAIN-SUFFIX,bankofamerica.com
+DOMAIN-SUFFIX,bofa.com
+# BoA 静态资源域,不加会白页
+DOMAIN-SUFFIX,bac-assets.com
+
+# ---- Citi ----
+DOMAIN-SUFFIX,citi.com
+DOMAIN-SUFFIX,citibank.com
+DOMAIN-SUFFIX,citibankonline.com
+DOMAIN-SUFFIX,citicards.com
+DOMAIN-SUFFIX,citigroup.com
+# Citi 联名/商户卡登录入口(Costco、Home Depot 等)
+DOMAIN-SUFFIX,accountonline.com
+DOMAIN-SUFFIX,citiretailservices.com
+
+# ---- Wells Fargo ----
+# keyword 已覆盖 wellsfargo.com / wellsfargoadvisors.com / wellsfargomedia.com
+DOMAIN-KEYWORD,wellsfargo
+# 但 wf.com 不含关键字,必须单列
+DOMAIN-SUFFIX,wf.com
+
+# ---- American Express ----
+# 注:不要用 DOMAIN-KEYWORD,amex,会误伤一堆无关域名
+DOMAIN-SUFFIX,americanexpress.com
+DOMAIN-SUFFIX,amex.com
+# Amex 静态资源(与 americanexpress.com 同一组 Akamai NS,确认为官方)
+DOMAIN-SUFFIX,aexp-static.com
+DOMAIN-SUFFIX,amextravel.com
+
+# ---- Discover ----
+DOMAIN-SUFFIX,discover.com
+DOMAIN-SUFFIX,discovercard.com
+DOMAIN-SUFFIX,discoverbank.com
+
+# ---- U.S. Bank / Elan ----
+DOMAIN-SUFFIX,usbank.com
+DOMAIN-SUFFIX,usbank.net
+# Elan(US Bank 代发卡,很多小银行的卡走这里)
+DOMAIN-SUFFIX,elanfinancialservices.com
+DOMAIN-SUFFIX,myaccountaccess.com
+
+# ---- Synchrony(Amazon / PayPal / 各类商户卡)----
+DOMAIN-SUFFIX,synchrony.com
+DOMAIN-SUFFIX,synchronybank.com
+DOMAIN-SUFFIX,mysynchrony.com
+DOMAIN-SUFFIX,syf.com
+
+# ---- Bread Financial / Comenity(商户联名卡)----
+DOMAIN-SUFFIX,comenity.net
+DOMAIN-SUFFIX,comenity.com
+DOMAIN-SUFFIX,comenitycapitalbank.com
+DOMAIN-SUFFIX,breadfinancial.com
+
+# ---- Barclays US ----
+DOMAIN-SUFFIX,barclaycardus.com
+DOMAIN-SUFFIX,barclaysus.com
+
+# ---- 其它发卡行 ----
+DOMAIN-SUFFIX,creditonebank.com
+DOMAIN-SUFFIX,missionlane.com
+DOMAIN-SUFFIX,fnbo.com
+DOMAIN-SUFFIX,biltrewards.com
+DOMAIN-SUFFIX,x1creditcard.com
+DOMAIN-SUFFIX,avantcard.com
+DOMAIN-SUFFIX,upgrade.com
+DOMAIN-SUFFIX,cardless.com
+
+# ================================================================
+# 三、其它主流银行 / 信用社
+# ================================================================
+DOMAIN-SUFFIX,pnc.com
+DOMAIN-SUFFIX,truist.com
+DOMAIN-SUFFIX,tdbank.com
+DOMAIN-SUFFIX,ally.com
+DOMAIN-SUFFIX,usaa.com
+DOMAIN-SUFFIX,citizensbank.com
+DOMAIN-SUFFIX,regions.com
+DOMAIN-SUFFIX,53.com
+DOMAIN-SUFFIX,key.com
+DOMAIN-SUFFIX,huntington.com
+DOMAIN-SUFFIX,mtb.com
+DOMAIN-SUFFIX,firstcitizens.com
+DOMAIN-SUFFIX,comerica.com
+DOMAIN-SUFFIX,axosbank.com
+# Goldman Sachs / Marcus(Apple Card 后台曾在此)
+DOMAIN-SUFFIX,marcus.com
+DOMAIN-SUFFIX,goldmansachs.com
+DOMAIN-SUFFIX,gs.com
+# 华人常用
+DOMAIN-SUFFIX,eastwestbank.com
+DOMAIN-SUFFIX,cathaybank.com
+# 信用社
+DOMAIN-SUFFIX,navyfederal.org
+DOMAIN-SUFFIX,nfcu.org
+DOMAIN-SUFFIX,penfed.org
+DOMAIN-SUFFIX,alliantcreditunion.org
+DOMAIN-SUFFIX,firsttechfed.com
+
+# ================================================================
+# 四、Neobank / 支付 / 转账
+# ================================================================
+DOMAIN-SUFFIX,sofi.com
+DOMAIN-SUFFIX,chime.com
+DOMAIN-SUFFIX,varo.com
+DOMAIN-SUFFIX,varomoney.com
+DOMAIN-SUFFIX,current.com
+DOMAIN-SUFFIX,dave.com
+DOMAIN-SUFFIX,greendot.com
+DOMAIN-SUFFIX,netspend.com
+# Cash App / Block
+DOMAIN-SUFFIX,cash.app
+DOMAIN-SUFFIX,squareup.com
+# Venmo(PayPal 旗下,仅美国可用)
+DOMAIN-SUFFIX,venmo.com
+# Zelle
+DOMAIN-SUFFIX,zellepay.com
+# 银行账户聚合(几乎所有 App 绑卡都要过 Plaid)
+DOMAIN-SUFFIX,plaid.com
+
+# ================================================================
+# 五、征信 / 信用监控(玩卡核心)
+# ================================================================
+DOMAIN-SUFFIX,creditkarma.com
+DOMAIN-SUFFIX,creditsesame.com
+DOMAIN-SUFFIX,myfico.com
+DOMAIN-SUFFIX,fico.com
+DOMAIN-SUFFIX,smartcredit.com
+# 三大局 + 免费年报
+DOMAIN-SUFFIX,experian.com
+DOMAIN-SUFFIX,experianidworks.com
+DOMAIN-SUFFIX,equifax.com
+DOMAIN-SUFFIX,transunion.com
+DOMAIN-SUFFIX,annualcreditreport.com
+# 第四局 / 专项报告(开户被拒查这些)
+DOMAIN-SUFFIX,innovis.com
+DOMAIN-SUFFIX,chexsystems.com
+DOMAIN-SUFFIX,earlywarning.com
+# 信用重建
+DOMAIN-SUFFIX,self.inc
+DOMAIN-SUFFIX,kikoff.com
+DOMAIN-SUFFIX,creditstrong.com
+
+# ================================================================
+# 六、报税 / 政府 / 身份验证(云居民刚需)
+# ================================================================
+# Intuit 系(TurboTax / Credit Karma 登录后端)
+DOMAIN-SUFFIX,intuit.com
+DOMAIN-SUFFIX,turbotax.com
+DOMAIN-SUFFIX,mint.com
+# 其它报税
+DOMAIN-SUFFIX,freetaxusa.com
+DOMAIN-SUFFIX,hrblock.com
+DOMAIN-SUFFIX,taxact.com
+# 政府
+DOMAIN-SUFFIX,irs.gov
+DOMAIN-SUFFIX,eftps.gov
+DOMAIN-SUFFIX,ssa.gov
+DOMAIN-SUFFIX,login.gov
+DOMAIN-SUFFIX,usps.com
+# 身份验证服务(开户 / 政府登录必过)
+DOMAIN-SUFFIX,id.me
+DOMAIN-SUFFIX,withpersona.com
+DOMAIN-SUFFIX,socure.com
+
+# ================================================================
+# 七、虚拟地址 / 代收信件
+# ================================================================
+DOMAIN-SUFFIX,anytimemailbox.com
+DOMAIN-SUFFIX,ipostal1.com
+DOMAIN-SUFFIX,usglobalmail.com
+DOMAIN-SUFFIX,virtualpostmail.com
+DOMAIN-SUFFIX,earthclassmail.com
+DOMAIN-SUFFIX,postscanmail.com
+
+# ================================================================
+# 八、美国 MVNO / 号码服务
+# ================================================================
 DOMAIN-SUFFIX,tello.com
 DOMAIN-SUFFIX,ultramobile.com
 DOMAIN-KEYWORD,numberbarn
+DOMAIN-SUFFIX,mintmobile.com
+DOMAIN-SUFFIX,usmobile.com
+DOMAIN-SUFFIX,redpocket.com
+DOMAIN-SUFFIX,textnow.com
+DOMAIN-SUFFIX,lycamobile.us
+# 三大运营商及其子品牌(账户页常按 IP 判定)
+DOMAIN-SUFFIX,t-mobile.com
+DOMAIN-SUFFIX,tmobile.com
+DOMAIN-SUFFIX,metrobyt-mobile.com
+DOMAIN-SUFFIX,verizon.com
+DOMAIN-SUFFIX,visible.com
+DOMAIN-SUFFIX,att.com
+DOMAIN-SUFFIX,cricketwireless.com
+DOMAIN-SUFFIX,boostmobile.com
+# 注:Google Fi 走 fi.google.com -> 见 google.list
 
-# ---- Yahoo ----
+# ================================================================
+# 九、Yahoo
+# ================================================================
 # 原为 DOMAIN-KEYWORD,yahoo,会把 yahoo.co.jp / yahoo.com.hk 也拽来美国,已收紧
 DOMAIN-SUFFIX,yahoo.com
 DOMAIN-SUFFIX,yimg.com
 
-# ---- 说明:以下三组不在此处 ----
+# ================================================================
+# 十、可选(按需取舍,默认可注释掉)
+# ================================================================
+# 记账 / 订阅管理
+# DOMAIN-SUFFIX,rocketmoney.com
+# DOMAIN-SUFFIX,monarchmoney.com
+# DOMAIN-SUFFIX,copilot.money
+# 保险(报价页会按 IP 判定州)
+# DOMAIN-SUFFIX,geico.com
+# DOMAIN-SUFFIX,progressive.com
+# DOMAIN-SUFFIX,statefarm.com
+# DOMAIN-SUFFIX,allstate.com
+# DOMAIN-SUFFIX,lemonade.com
+# 新移民/无 SSN 开户
+# DOMAIN-SUFFIX,zolve.com
+# DOMAIN-SUFFIX,majority.com
+# 商业银行/公司卡
+# DOMAIN-SUFFIX,mercury.com
+# DOMAIN-SUFFIX,brex.com
+# DOMAIN-SUFFIX,ramp.com
+# DOMAIN-SUFFIX,relayfi.com
+# DOMAIN-SUFFIX,novo.co
+# DOMAIN-SUFFIX,bluevine.com
+
+# ================================================================
+# 说明:以下几组不在此处
+# ================================================================
 # US.yaml 曾把它们归为美国,现已各归专用组(默认候选第一位仍是美国,行为不变):
 #   xn--ngstr-lra8j.com / services.googleapis.cn -> google.list(谷歌服务)
 #   skywork.ai / skyworkcdn.com                  -> ai.list(人工智能)
-#   push.apple.com                               -> apple.list(苹果服务)
-
-
-DOMAIN-KEYWORD,wellsfargo
+#   push.apple.com                               -> applepush.list(苹果服务)
+# 另:
+#   paypal.com / wise.com / coinbase.com 属全球服务,建议单独分组而非强制美国
+#   creditkarma.ca 是加拿大站,故意不收

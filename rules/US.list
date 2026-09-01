@@ -269,15 +269,34 @@ DOMAIN-SUFFIX,boostmobile.com
 # 注:Google Fi 走 fi.google.com -> 见 google.list
 
 # ================================================================
-# 九、Yahoo
+# 九、电商 / 二手交易
+# ================================================================
+# eBay
+# 注:不要用 DOMAIN-KEYWORD,ebay,会把 ebay.co.uk / ebay.de / ebay.com.hk 也拽来美国
+DOMAIN-SUFFIX,ebay.com
+# 图片 / 静态资源 / 商品描述框,漏了会图片不出、详情页空白
+DOMAIN-SUFFIX,ebayimg.com
+DOMAIN-SUFFIX,ebaystatic.com
+DOMAIN-SUFFIX,ebaydesc.com
+# 广告/追踪与公司站(可选)
+DOMAIN-SUFFIX,ebayrtm.com
+DOMAIN-SUFFIX,ebayadservices.com
+DOMAIN-SUFFIX,ebayinc.com
+
+# ================================================================
+# 十、Yahoo
 # ================================================================
 # 原为 DOMAIN-KEYWORD,yahoo,会把 yahoo.co.jp / yahoo.com.hk 也拽来美国,已收紧
 DOMAIN-SUFFIX,yahoo.com
 DOMAIN-SUFFIX,yimg.com
 
 # ================================================================
-# 十、可选(按需取舍,默认可注释掉)
+# 十一、可选(按需取舍,默认可注释掉)
 # ================================================================
+# 美国二手 / 票务(和 eBay 同场景)
+# DOMAIN-SUFFIX,mercari.com
+# DOMAIN-SUFFIX,poshmark.com
+# DOMAIN-SUFFIX,stubhub.com
 # 记账 / 订阅管理
 # DOMAIN-SUFFIX,rocketmoney.com
 # DOMAIN-SUFFIX,monarchmoney.com
@@ -289,15 +308,15 @@ DOMAIN-SUFFIX,yimg.com
 # DOMAIN-SUFFIX,allstate.com
 # DOMAIN-SUFFIX,lemonade.com
 # 新移民/无 SSN 开户
-# DOMAIN-SUFFIX,zolve.com
-# DOMAIN-SUFFIX,majority.com
+DOMAIN-SUFFIX,zolve.com
+DOMAIN-SUFFIX,majority.com
 # 商业银行/公司卡
-# DOMAIN-SUFFIX,mercury.com
-# DOMAIN-SUFFIX,brex.com
-# DOMAIN-SUFFIX,ramp.com
-# DOMAIN-SUFFIX,relayfi.com
-# DOMAIN-SUFFIX,novo.co
-# DOMAIN-SUFFIX,bluevine.com
+DOMAIN-SUFFIX,mercury.com
+DOMAIN-SUFFIX,brex.com
+DOMAIN-SUFFIX,ramp.com
+DOMAIN-SUFFIX,relayfi.com
+DOMAIN-SUFFIX,novo.co
+DOMAIN-SUFFIX,bluevine.com
 
 # ================================================================
 # 说明:以下几组不在此处
@@ -305,7 +324,8 @@ DOMAIN-SUFFIX,yimg.com
 # US.yaml 曾把它们归为美国,现已各归专用组(默认候选第一位仍是美国,行为不变):
 #   xn--ngstr-lra8j.com / services.googleapis.cn -> google.list(谷歌服务)
 #   skywork.ai / skyworkcdn.com                  -> ai.list(人工智能)
-#   push.apple.com                               -> applepush.list(苹果服务)
+#   push.apple.com                               -> apple.list(苹果服务)
 # 另:
 #   paypal.com / wise.com / coinbase.com 属全球服务,建议单独分组而非强制美国
 #   creditkarma.ca 是加拿大站,故意不收
+#   ebay.co.uk / ebay.de / ebay.com.hk 同理,故意不收

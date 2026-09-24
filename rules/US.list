@@ -1,8 +1,8 @@
 # 美国 —— 自定义规则
 # 引用:RULE-SET,<base>/rules/us.list,美国,extended-matching
 # 合并自:US.yaml(已废弃)
-# 最后更新:2026-09-01
-# 说明:全文只用 DOMAIN-SUFFIX / DOMAIN-KEYWORD,Surge / Clash(mihomo)/ Shadowrocket / Loon 通用
+# 最后更新:2026-09-24
+# 说明:只用 DOMAIN-SUFFIX / DOMAIN-KEYWORD / IP-CIDR,Surge / Clash(mihomo,behavior: classical)/ Shadowrocket / Loon 通用
 # 原则:能用 suffix 就不用 keyword,避免误伤同名的非美国站点(如 .ca / .co.uk 分站)
 
 # ================================================================
@@ -188,6 +188,26 @@ DOMAIN-SUFFIX,squareup.com
 DOMAIN-SUFFIX,venmo.com
 # Zelle
 DOMAIN-SUFFIX,zellepay.com
+# ---- Stripe / Link(暂时注释,待定是否拆到单独的 payment.list)----
+# Link by Stripe(Link App),两个域名都要收 —— 分属两个 AWS 托管区,一条盖不住
+# link.com   : www / app / api / auth / login / checkout / support 全在这下面
+# onelink.com: App 实际在用(app.onelink.com),NS 与 stripe.com 完全相同,
+#              与 app.link.com 同解析到 198.202.176.111
+# DOMAIN-SUFFIX,link.com
+# DOMAIN-SUFFIX,onelink.com
+# Stripe 本体(Link App 实测会调 api.stripe.com / r.stripe.com)
+# 下面三条的 NS 与 stripe.com 完全一致,确认自有
+# DOMAIN-SUFFIX,stripe.com
+# DOMAIN-SUFFIX,stripe.network
+# DOMAIN-SUFFIX,stripeassets.com
+# CDN:NS 是另一组,但与 js.stripe.com 解析到同一 Fastly 节点
+# DOMAIN-SUFFIX,stripecdn.com
+# 已覆盖的关键子域:js / api / m / r / q / checkout / hooks / dashboard / connect /
+#   errors.stripe.com、m.stripe.network(Radar 指纹)、b.stripecdn.com
+# 副作用:港区/欧区/日区商户的结账页也会从美国出口
+# 可选(文档/状态页,与支付无关,默认不收):
+#   stripe.dev / stripe.press / stripe.partners / stripestatus.com
+# 注:CardinalCommerce(Visa 3DS)是独立厂商,不属 Stripe,仍在 risk.list 第四节
 # 银行账户聚合(几乎所有 App 绑卡都要过 Plaid)
 DOMAIN-SUFFIX,plaid.com
 
@@ -249,6 +269,8 @@ DOMAIN-SUFFIX,postscanmail.com
 # ================================================================
 # 八、美国 MVNO / 号码服务
 # ================================================================
+# Tello(官网 / 账户 / E911 地址登记 / 帮助中心,子域全在 tello.com 下)
+# 注:Tello 页面加载时实测会调 Signifyd + ThreatMetrix 指纹 -> 见 risk.list,需与本组同节点
 DOMAIN-SUFFIX,tello.com
 DOMAIN-SUFFIX,ultramobile.com
 DOMAIN-KEYWORD,numberbarn
@@ -267,6 +289,20 @@ DOMAIN-SUFFIX,att.com
 DOMAIN-SUFFIX,cricketwireless.com
 DOMAIN-SUFFIX,boostmobile.com
 # 注:Google Fi 走 fi.google.com -> 见 google.list
+
+# ---- Wi-Fi Calling(美国运营商 ePDG)----
+# 原理:手机用 IKEv2/IPsec(UDP 500/4500)连运营商 ePDG,地址由 DNS 查询
+#   epdg.epc.mnc<MNC>.mcc<MCC>.pub.3gppnetwork.org 得到
+# 只收美国 MCC(310/311/312),不要写 pub.3gppnetwork.org 整个后缀——
+#   那会把港卡/其它国家 SIM 的 Wi-Fi Calling 一起拽到美国,港区运营商会拒非港 IP
+DOMAIN-SUFFIX,mcc310.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc311.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc312.pub.3gppnetwork.org
+# T-Mobile ePDG(Tello 跑在 T-Mobile 网络上)
+# 实测 mnc260 -> 208.54.97.163、mnc240 -> 208.54.40.3,两段均为 AS21928 T-Mobile USA
+# 非 fake-ip 模式下连接不带域名,只能靠 IP 命中,所以两种都写
+IP-CIDR,208.54.97.0/24,no-resolve
+IP-CIDR,208.54.40.0/24,no-resolve
 
 # ================================================================
 # 九、电商 / 二手交易
@@ -328,4 +364,7 @@ DOMAIN-SUFFIX,bluevine.com
 # 另:
 #   paypal.com / wise.com / coinbase.com 属全球服务,建议单独分组而非强制美国
 #   creditkarma.ca 是加拿大站,故意不收
+#   注意区分:onelink.com 是 Stripe 的 Link(已收),onelink.me 是 AppsFlyer
+#             的深链服务(AWS 托管,与 Stripe 无关),别把 .me 那个加进来
+#   Branch.io 的 xxx.app.link 是 .link 顶级域,不会被 link.com 命中
 #   ebay.co.uk / ebay.de / ebay.com.hk 同理,故意不收

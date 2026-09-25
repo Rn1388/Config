@@ -12,3 +12,42 @@ DOMAIN-KEYWORD,etherfi
 # dtcpay
 DOMAIN-SUFFIX,dtcpay.com
 DOMAIN-SUFFIX,dtcpayment.net
+
+# 菲律宾 Maya(原 PayMaya)—— 自定义规则
+# 引用:RULE-SET,<base>/rules/maya.list,<策略组>,extended-matching
+# 最后更新:2026-09-25
+# 说明:只用 DOMAIN-SUFFIX,Surge / Clash(mihomo)/ Shadowrocket / Loon 通用
+#
+# 归属核验方式:
+#   - 各域名的 M365 邮箱租户名一一对应(maya-ph / paymaya-com / mayabank-ph /
+#     voyagerinnovation-com .mail.protection.outlook.com)
+#   - support.maya.ph 与 support.mayabank.ph 指向同一个 Salesforce 组织
+#     (00d7f000003idjcuai.live.siteforce.com)
+#   - support.paymaya.com 的 CNAME 就是 support.voyagerinnovation.com
+#   - 后端主要落在 AWS ap-southeast-1(新加坡),不在菲律宾本地
+
+# ---- Maya 钱包 / App(现用品牌)----
+# 覆盖 api / app / assets / pg / pg-sandbox / payments / business / manager /
+#   developers / support 等子域
+DOMAIN-SUFFIX,maya.ph
+
+# ---- PayMaya(旧品牌,App 与商户接口仍大量使用)----
+# 注:paymaya.com 疑似开了泛解析(随便一个子域都能解析),一条后缀全收
+DOMAIN-SUFFIX,paymaya.com
+
+# ---- Maya Bank(数字银行)----
+DOMAIN-SUFFIX,mayabank.ph
+
+# ---- Voyager Innovations(Maya 的母公司 / 技术平台)----
+DOMAIN-SUFFIX,voyagerinnovation.com
+
+# ================================================================
+# 可选
+# ================================================================
+# Smart Padala(同属 PLDT/Voyager 体系的汇款网络,不用可不开)
+DOMAIN-SUFFIX,smartpadala.ph
+# paymaya.io:AWS 托管,顶级域名本身没有 A 记录,子域没枚举到,用途不明
+DOMAIN-SUFFIX,paymaya.io
+# mayabank.com:有 M365 租户 mayabank-com,但顶级域名不解析,疑似只用于邮件或防御性注册
+DOMAIN-SUFFIX,mayabank.com
+

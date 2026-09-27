@@ -1,0 +1,109 @@
+# 去广告 —— 自定义规则(所有去广告统一放这里,按 App / 来源分节)
+# 引用(Surge / Shadowrocket):
+#   RULE-SET,https://raw.githubusercontent.com/Rn1388/Config/refs/heads/main/rules/Reject.list,REJECT,extended-matching
+# 引用(Loon [Remote Rule]):
+#   https://raw.githubusercontent.com/Rn1388/Config/refs/heads/main/rules/Reject.list,REJECT
+# 引用(mihomo):rule-provider behavior: classical, format: text;RULE-SET,reject,REJECT
+# 最后更新:2026-09-27
+# 位置:放在所有分流 RULE-SET 之前(规则自上而下匹配,先命中先生效)
+# 写法:文件内每行不写策略;能精确到主机名用 DOMAIN,只有整个域名都是广告基础设施才用 DOMAIN-SUFFIX
+# 新增某个 App 的去广告时,照下面的格式另起一个大节
+
+# ################################################################
+# Talkatone
+# ################################################################
+# 来源:
+#   lodepuly「Talkatone去广告」(Stash 覆写,2024-08)—— 主体,精确到具体主机名
+#   LOWERTOP Talkatone.sgmodule —— 补充 Verve / Sharethrough / Smart AdServer / Smadex / Jampp
+#   talkatone.com/app-ads.txt(官方授权卖家清单)—— 佐证:Smaato、Pubnative/Verve 是直签,
+#     Sharethrough、Smart AdServer、InMobi、PubMatic、Criteo 均在授权列表内
+# 以下每条均实测 DNS 可解析(或其 NS 存在、仅子域在用)
+
+# ---- Amazon Publisher Services ----
+DOMAIN-SUFFIX,amazon-adsystem.com
+
+# ---- InMobi ----
+DOMAIN,ads.inmobi.com
+DOMAIN,b.de.inmobi.com
+DOMAIN,ic.de.inmobi.com
+DOMAIN,et-eus.w.inmobi.com
+DOMAIN,config.inmobi.com
+DOMAIN,dspbeacons.ihasdsp.inmobi.com
+DOMAIN,dspbeacons.old.ihasdsp.inmobi.com
+DOMAIN-SUFFIX,inmobicdn.net
+
+# ---- Smaato / Verve(Pubnative)—— app-ads.txt 里的直签伙伴 ----
+DOMAIN-SUFFIX,smaato.net
+DOMAIN,www.smaato.com
+DOMAIN,sdkc.vervegroupinc.net
+DOMAIN,api.nextgen.verve.net
+
+# ---- PubMatic / Criteo / Sharethrough / Smart AdServer ----
+DOMAIN,ads.pubmatic.com
+DOMAIN,ow.pubmatic.com
+DOMAIN,bidder.criteo.com
+DOMAIN,gum.criteo.com
+DOMAIN,eqt-gc.rendering.sharethrough.com
+DOMAIN-SUFFIX,smartadserver.com
+
+# ---- DT Exchange(原 Fyber / Inneractive)----
+DOMAIN,cdn2.inner-active.mobi
+DOMAIN,wv.inner-active.mobi
+DOMAIN,sdk-events.inner-active.mobi
+DOMAIN,exchange-b-events.inner-active.mobi
+DOMAIN,skadnetworks.fyber.com
+
+# ---- MobileFuse / Liftoff / Moloco / Appier / Tappx / Smadex / Jampp ----
+DOMAIN,cdn.mobilefuse.com
+DOMAIN,mfx.mobilefuse.com
+DOMAIN,cdn.liftoff-creatives.io
+DOMAIN,impression-asia.liftoff.io
+DOMAIN,cdn-f.adsmoloco.com
+DOMAIN,tr-asia.adsmoloco.com
+DOMAIN-SUFFIX,adsappier.com
+DOMAIN-SUFFIX,appier.net
+DOMAIN-SUFFIX,appiersig.com
+DOMAIN-SUFFIX,tappx.com
+DOMAIN,creatives.smadex.com
+DOMAIN,static-content-1.smadex.com
+DOMAIN,br-trk.smadex.com
+DOMAIN,imp-lb-us2.jampp.com
+DOMAIN,impression.link
+
+# ---- IPONWEB / BidSwitch(NS 为 iponweb.net,确认广告交易平台)----
+DOMAIN-SUFFIX,bidswitch.net
+DOMAIN-SUFFIX,iteleserve.com
+
+# ---- Google 广告 ----
+DOMAIN,googleads.g.doubleclick.net
+DOMAIN-SUFFIX,googlesyndication.com
+DOMAIN,googleads.g.doubleclick-cn.net
+DOMAIN,pagead2.googlesyndication-cn.com
+DOMAIN,tpc.googlesyndication-cn.com
+DOMAIN,www.googletagservices-cn.com
+DOMAIN,lh3.googleadsserving.cn
+# Google Analytics for Firebase 的统计上报,只影响各 App 的统计,不影响功能
+DOMAIN,app-analytics-services.com
+
+# ================================================================
+# 可选(归属查不到,社区规则里有,默认注释)
+# ================================================================
+# DOMAIN-SUFFIX,tk0x1.com
+# DOMAIN-SUFFIX,serveteck.com
+# DOMAIN-SUFFIX,adrta.com
+
+# ================================================================
+# 故意不收(社区规则里有,但会误伤其它 App 或不确定用途)
+# ================================================================
+#   firebaseinstallations.googleapis.com / firebaseremoteconfig.googleapis.com /
+#   firebaselogging-pa.googleapis.com / firebase-settings.crashlytics.com
+#     —— 所有用 Firebase 的 App 共用,installations 与推送注册有关
+#   itunes.apple.com —— App Store 链接与查询,所有 App 共用
+#   fundingchoicesmessages.google.com —— Google 的同意弹窗服务,网页也在用
+#   ep7.facebook.com —— 用途查不到,Facebook 域名误拦风险大
+#   view.adjust.com —— Adjust 归因,很多 App 共用
+#   lb-iad-*.tktn.be —— Talkatone 自己的负载均衡,曾与 config.talkatone.com 同 IP,
+#     不能确认是广告
+#   DOMAIN-KEYWORD,googleads —— 关键字匹配范围太宽
+#   整域的 criteo.com / pubmatic.com / inmobi.com —— 也是公司官网,只拦具体广告主机
+#   au.w.inmobi.com —— 已不解析,删除

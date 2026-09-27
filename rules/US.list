@@ -327,7 +327,31 @@ DOMAIN-SUFFIX,yahoo.com
 DOMAIN-SUFFIX,yimg.com
 
 # ================================================================
-# 十一、可选(按需取舍,默认可注释掉)
+# 十一、Talkatone
+# ================================================================
+# Ooma 旗下免费美国号码 App
+# 去广告规则见 Reject.list 的 Talkatone 一节
+# 注:收验证码 / 短码短信需订阅 Talkatone Plus(官方帮助中心说明)
+# 实测子域:www / account / my / support / config / stun / vm(语音留言)
+# 注:stun.talkatone.com 是 stun.l.google.com 的 CNAME,fake-ip 模式下按 talkatone.com 命中
+#     通话走 UDP,落地节点必须支持 UDP
+DOMAIN-SUFFIX,talkatone.com
+# tktn.at / tktn.be:Talkatone 的短域名(API / XMPP 信令),NS 就是 ns01-06.talkatone.com,确认自有
+#   tktn.be 下有 xmpp2 / xmpp3 / xmpp4 等 XMPP 服务器
+DOMAIN-SUFFIX,tktn.at
+DOMAIN-SUFFIX,tktn.be
+# 连接不带域名时兜底:xmpp4.tktn.be 实测解析到 216.172.154.50(AS18779 EGIHosting)
+#   注:整个 /24 是托管商的段,可能还有别家服务器
+IP-CIDR,216.172.154.0/24,no-resolve
+# 社区规则(mottzz87 / qsoyq / gist / LOWERTOP)里的其它条目未收:
+#   50.117.27.0/24、69.46.75.0/24、205.164.56.0/24、63.251.124.0/24 —— 托管商网段,
+#     查不到指向它们的 Talkatone 域名
+#   crashlytics / ip-api / cohere / kochava / agkn / inmobi / mobilefuse —— 通用 SDK,
+#     放进来会把所有 App 的这些请求一起拽到美国
+#   端口 5222 —— XMPP 通用端口,WhatsApp 等也在用,不写全局端口规则
+
+# ================================================================
+# 可选(按需取舍,默认可注释掉)
 # ================================================================
 # 美国二手 / 票务(和 eBay 同场景)
 # DOMAIN-SUFFIX,mercari.com

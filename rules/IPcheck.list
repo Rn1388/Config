@@ -116,7 +116,7 @@ DOMAIN-SUFFIX,privy.io
 # ==========================================================
 # ---- 风控 SDK(核心!必须与主 API 同出口)----
 # ==========================================================
-DOMAIN-SUFFIX,sardine.ai
+#DOMAIN-SUFFIX,sardine.ai #前面有
 # ↑ Sardine 设备指纹+行为生物识别,抓 VPN/地理/时区不一致
 DOMAIN-SUFFIX,nsureapi.com
 # ↑ nSure.ai 支付反欺诈,交易时查 IP/VPN/GEO(含 sdk./sdk-service.)

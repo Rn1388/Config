@@ -1,0 +1,58 @@
+# 西班牙 —— 自定义规则
+# 引用:RULE-SET,https://raw.githubusercontent.com/Rn1388/Config/refs/heads/main/rules/ES.list,西班牙,extended-matching
+# 注意:文件名大写 ES.list,GitHub raw 区分大小写
+# 最后更新:2026-10-05
+# 说明:只用 DOMAIN-SUFFIX / IP-CIDR,Surge / Clash(mihomo,behavior: classical)/ Shadowrocket / Loon 通用
+#
+# 位置建议:放在 Reject / IPcheck / Google / Apple / AI 等按服务分的规则集之后,
+#   放在 GEOIP、FINAL 之前。原因见第一节。
+
+# ================================================================
+# 一、所有 .es 域名
+# ================================================================
+# DOMAIN-SUFFIX 按"整段标签"匹配(Surge 手册与 mihomo 文档均写明:
+#   google.com 匹配 www.google.com,不匹配 content-google.com),
+#   所以这一条只命中 xxx.es / a.b.es,不会误伤 notes、cookies 这类结尾恰好是 es 的名字
+# 已覆盖:simyo.es(含 api.simyo.es / blog.simyo.es)、orange.es、bunq.es 等全部 .es 站点
+# 注意:google.es、amazon.es 等大厂的 .es 站点也会被这一条接住;
+#   若希望它们跟各自的服务组走,把 ES.list 放在 Google 等规则集之后即可
+DOMAIN-SUFFIX,es
+
+# ================================================================
+# 二、simyo(西班牙,Orange 集团)
+# ================================================================
+# simyo.es 已被第一节覆盖,无需单列
+# 同名但不是同一家,故意不收:
+#   simyo.nl —— 荷兰 simyo,NS 是 KPN(ns3/ns13.kpn.net)
+#   simyo.de —— 德国 simyo,NS 是 o2online.de(Telefónica)
+#   simyo.com —— 停放页(namepros-dns)
+# 注:simyo App 是否还会调用 .es 以外的第三方域名(客服、统计、身份验证等),
+#   没抓过 App 流量,不确定;如在日志里看到 simyo 相关请求落到 FINAL,再补
+
+# ================================================================
+# 三、bunq(荷兰数字银行)
+# ================================================================
+# 子域实测:www / help / careers(Framer 托管)、api、apps、web、static、oauth、
+#   together(社区)、status、doc(GitBook)、developer、press、track(埋点)
+DOMAIN-SUFFIX,bunq.com
+# bunq.me:付款链接(bunq.me/用户名),疑似开了泛解析
+DOMAIN-SUFFIX,bunq.me
+# bunq.app:解析到 3.77.6.111,与 app.bunq.me 同一 IP
+DOMAIN-SUFFIX,bunq.app
+# bunq.es 已被第一节覆盖
+# bunq 自有 IP 段(沿用旧规则)
+#   RIPE 登记:185.40.108.0/22,netname NL-BUNQ-20131113,国家 NL,确认是 bunq 的地址
+#   但整个 /22 目前没有在 BGP 里宣告,只有 185.40.110.0/24 由 AS16509(Amazon)宣告,
+#   即 bunq 把自有地址带到了 AWS 上用;上面这些 bunq 域名现在都没有解析到这个段里,
+#   推测是 App 直连 IP 或历史遗留。保留无害:整段都是 bunq 的,不会误伤别人
+IP-CIDR,185.40.108.0/22,no-resolve
+
+# 可选(都是 AWS 托管 + Google Workspace 邮箱,但 IP 与上面的 bunq 主机对不上,
+#   用途不明,默认注释)
+# DOMAIN-SUFFIX,bunq.nl
+# DOMAIN-SUFFIX,bunq.eu
+# DOMAIN-SUFFIX,bunq.io
+# DOMAIN-SUFFIX,bunq.cloud
+
+# 注:bunq App 开户 / 登录时是否调用第三方身份核验、风控 SDK,没抓过包,不确定。
+#   若在日志里看到落到 FINAL 的相关请求,把域名发来再判断该放这里还是 risk.list

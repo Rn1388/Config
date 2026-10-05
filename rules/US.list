@@ -270,9 +270,19 @@ DOMAIN-SUFFIX,postscanmail.com
 # 八、美国 MVNO / 号码服务
 # ================================================================
 # Tello(官网 / 账户 / E911 地址登记 / 帮助中心,子域全在 tello.com 下)
-# 注:Tello 页面加载时实测会调 Signifyd + ThreatMetrix 指纹 -> 见 risk.list,需与本组同节点
+# 注:Tello 页面加载时实测会调 Signifyd + ThreatMetrix 指纹 -> 由 IPcheck.list 接管,
+#     IP检查组需与本组切到同一节点
 DOMAIN-SUFFIX,tello.com
-DOMAIN-SUFFIX,ultramobile.com
+# keepcalling.net:Tello 母公司 KeepCalling 的域名,Tello App 实测调用 mobileapi.keepcalling.net
+#   归属:顶级域名解析到 35.168.216.102,与 blog.tello.com / team.tello.com 同一 IP;自建 NS
+#   注:keepcalling.com(Cloudflare)暂未见 App 调用,不收
+DOMAIN-SUFFIX,keepcalling.net
+# KeepCalling 服务器段(App 直接用 IP 连,不带域名时靠这条命中)
+#   实测:Tello App 连 63.251.74.24,反向解析为 63-251-74-24.keepcalling.net
+#   扫描 63.251.72.0/22 反向解析:74 这一段 256 个地址里 253 个是 *.keepcalling.net,
+#   相邻的 72 / 73 / 75 段属其它客户(entrustedmail、internap 等),故只收 /24
+#   路由由 AS14745(Unitas Global,原 Internap)宣告,IP 归托管商,KeepCalling 是租用方
+IP-CIDR,63.251.74.0/24,no-resolve
 DOMAIN-KEYWORD,numberbarn
 DOMAIN-SUFFIX,mintmobile.com
 DOMAIN-SUFFIX,usmobile.com

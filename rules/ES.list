@@ -61,3 +61,15 @@ IP-CIDR,185.40.108.0/22,no-resolve
 #   但你在 Surge 主配置里手写为「直连」,已按此归入 direct.list。
 #   若改主意走欧洲:取消下面注释,同时删掉 direct.list 里的同名规则。
 DOMAIN-KEYWORD,bankera
+
+
+# ================================================================
+# 四、Wi-Fi Calling(来源:SimHub,逐条核实)
+# ================================================================
+# 🇪🇸 西班牙 MCC 214:按国家整段收(simyo 214-19、Orange 214-03 / 214-09、Jazztel 214-21)
+#   ePDG 域名在 3gppnetwork.org 下,不是 .es,第一节那条接不住,必须单列
+DOMAIN-SUFFIX,mcc214.pub.3gppnetwork.org
+# Orange 214-03:ePDG 实测 92.58.249.252 / 253,92.58.249.0/24 由 AS12479 Orange Espagne 宣告
+IP-CIDR,92.58.249.0/24,no-resolve
+# 注:simyo 214-19、Orange 214-09 的 ePDG 公网 DNS 返回 127.0.0.1(占位地址),
+#   Jazztel 214-21 查不到记录 —— 这几家没有公开可用的 ePDG 地址

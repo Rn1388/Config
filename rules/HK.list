@@ -51,3 +51,25 @@ DOMAIN-SUFFIX,paymaya.io
 # mayabank.com:有 M365 租户 mayabank-com,但顶级域名不解析,疑似只用于邮件或防御性注册
 DOMAIN-SUFFIX,mayabank.com
 
+
+# ================================================================
+# Wi-Fi Calling(来源:SimHub,逐条核实)
+# ================================================================
+# 🇭🇰 香港 MCC 454:按国家整段收,覆盖所有香港运营商的 ePDG 域名
+DOMAIN-SUFFIX,mcc454.pub.3gppnetwork.org
+# 3 香港(和记)
+DOMAIN-SUFFIX,wlan.three.com.hk
+#   203.145.80.0/20、124.217.128.0/18 均由 AS10118 Hutchison Telephone 宣告
+#   (SimHub 另列的 203.145.88.0/21、203.145.92.0/24、124.217.186.0/24 都在这两段内,不重复写)
+IP-CIDR,203.145.80.0/20,no-resolve
+IP-CIDR,124.217.128.0/18,no-resolve
+# CSL / HKT(454-00)
+#   注:SimHub 把 454-00 标成了「3 Hong Kong」,但 454-00 的 ePDG 实测解析到
+#   120.88.224.5/6、120.88.240.5/6,两段均由 AS9444 HKT 宣告 —— 这是 CSL 的
+IP-CIDR,120.88.224.0/24,no-resolve
+IP-CIDR,120.88.240.0/24,no-resolve
+
+# 🇵🇭 菲律宾(与 Maya 一样走香港)
+# DITO 515-66:ePDG 实测 131.226.72.137 / 73.137,131.226.64.0/18 由 AS139831 DITO 宣告
+DOMAIN-SUFFIX,mcc515.pub.3gppnetwork.org
+IP-CIDR,131.226.64.0/18,no-resolve

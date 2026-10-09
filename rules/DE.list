@@ -76,8 +76,8 @@ DOMAIN-KEYWORD,plasmascan
 DOMAIN-SUFFIX,revolut.com
 # Revolut 的第二域名,实测在用,原配置遗漏
 DOMAIN-SUFFIX,revolut.codes
-DOMAIN-SUFFIX,bunq.com
-DOMAIN-SUFFIX,bunq.me
+#DOMAIN-SUFFIX,bunq.com
+#DOMAIN-SUFFIX,bunq.me
 DOMAIN-SUFFIX,monese.com
 DOMAIN-SUFFIX,tuyo.com
 DOMAIN-SUFFIX,n26.com

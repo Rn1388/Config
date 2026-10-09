@@ -308,11 +308,21 @@ DOMAIN-SUFFIX,boostmobile.com
 DOMAIN-SUFFIX,mcc310.pub.3gppnetwork.org
 DOMAIN-SUFFIX,mcc311.pub.3gppnetwork.org
 DOMAIN-SUFFIX,mcc312.pub.3gppnetwork.org
-# T-Mobile ePDG(Tello 跑在 T-Mobile 网络上)
-# 实测 mnc260 -> 208.54.97.163、mnc240 -> 208.54.40.3,两段均为 AS21928 T-Mobile USA
-# 非 fake-ip 模式下连接不带域名,只能靠 IP 命中,所以两种都写
-IP-CIDR,208.54.97.0/24,no-resolve
-IP-CIDR,208.54.40.0/24,no-resolve
+# T-Mobile ePDG(Tello 跑在 T-Mobile 网络上)—— 来源:SimHub「T-Mobile US / Ultra」,逐条核实
+# ePDG 实测分散在整个 208.54.x(97.163 / 148.227 / 80.163 / 35.163 / 26.131 / 2.195 ...),
+#   原先的两个 /24 覆盖不全,改为 /16;其下 60 多个子段由 AS21928 T-Mobile 宣告,
+#   另有少量子段属 Liberty PR / CenturyLink 等,均为美国网络,一并走美国无害
+# 非 fake-ip 模式下连接不带域名,只能靠 IP 命中,所以域名和 IP 都写
+IP-CIDR,208.54.0.0/16,no-resolve
+# 66.94.0.0/19:AS21928 T-Mobile USA 宣告
+IP-CIDR,66.94.0.0/19,no-resolve
+# SimHub 原为 206.29.177.36/32;所在 206.29.176.0/22 由 AS22140 T-Mobile USA 宣告,按整段收
+IP-CIDR,206.29.176.0/22,no-resolve
+# Ultra Mobile 的跳转域名(ultramobile.com、t-mobile.com 已在本表上方)
+DOMAIN-SUFFIX,ultra.me
+# SimHub 里的以下条目未收:
+#   optimizely.com —— 通用 A/B 测试服务,与 Wi-Fi Calling 无关
+#   DOMAIN-KEYWORD,t-mobile —— 会误伤 t-mobile.de / .pl / .nl 等非美国站,已用 DOMAIN-SUFFIX,t-mobile.com
 
 # ================================================================
 # 九、电商 / 二手交易

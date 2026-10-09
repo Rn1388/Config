@@ -147,11 +147,21 @@ DOMAIN-KEYWORD,api-o2de
 # ⑨ 欧洲运营商
 # ==========================================================
 DOMAIN-KEYWORD,giffgaff
-DOMAIN-SUFFIX,gmcc234.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mcc234.pub.3gppnetwork.org
 DOMAIN-KEYWORD,simyo
 # 原为 DOMAIN-KEYWORD,vodafone —— 会把 vodafone.com.eg(埃及)、vodafone.com.tr(土耳其)
 # 也带到欧洲节点,已收紧为德国站。若日后要用英国站,另加 DOMAIN-SUFFIX,vodafone.co.uk
 DOMAIN-SUFFIX,vodafone.de
+# ---- Wi-Fi Calling 域名(来源:SimHub,逐条核实)----
+# 按国家整段收 ePDG 域名,覆盖 epdg / ss.epdg / geo 等各种前缀
+# 🇬🇧 英国 MCC 234:已在上方(giffgaff 234-10、Vodafone UK 234-15)
+# 🇩🇪 德国 MCC 262:Vodafone DE 262-02、O2 DE 262-03
+DOMAIN-SUFFIX,mcc262.pub.3gppnetwork.org
+# 🇳🇱 荷兰 MCC 204:Vodafone NL 204-04
+DOMAIN-SUFFIX,mcc204.pub.3gppnetwork.org
+# Vodafone UK 的 entitlement(开通校验)端点
+DOMAIN-SUFFIX,entsrv-uk.vodafone.com
+DOMAIN-SUFFIX,vuk-gto.prod.ondemandconnectivity.com
 
 # ==========================================================
 # ⑩ 欧洲区服务端点 / 客服 / 埋点
@@ -185,7 +195,22 @@ DOMAIN-SUFFIX,api-gateway-xi-nine.vercel.app
 #    因此各端引用行不必再带 no-resolve(带了也无害,只是冗余)。
 # ==========================================================
 # giffgaff(英国 MVNO)专用网段
+#   核实:AS35228 Telefonica UK 宣告;giffgaff ePDG 实测 87.194.88.8 / 89.8 / 8.8 / 9.8 均在段内
 IP-CIDR,87.194.0.0/16,no-resolve
+
+# ---- Wi-Fi Calling ePDG 网段(来源:SimHub,逐条核实 BGP 归属)----
+# 🇬🇧 Vodafone UK:88.82.0.0/19 由 AS25135 Vodafone UK 宣告
+IP-CIDR,88.82.0.0/19,no-resolve
+#   SimHub 漏了:ePDG 还解析到 148.252.188.96,所在 148.252.160.0/19 同为 AS25135
+IP-CIDR,148.252.160.0/19,no-resolve
+# 🇩🇪 Vodafone DE:ePDG 域名公网 DNS 查不到,SimHub 给的是写死的地址 139.7.117.170
+#   所在 139.7.0.0/16 由 AS3209 Vodafone GmbH 宣告;按 SimHub 原样只收 /30
+IP-CIDR,139.7.117.168/30,no-resolve
+# 🇩🇪 O2 DE:ePDG 实测 213.20.175.56 / 151.16 / 31.8、62.52.52.30,均由 AS6805 Telefonica Germany 宣告
+IP-CIDR,213.20.0.0/16,no-resolve
+IP-CIDR,62.52.0.0/16,no-resolve
+# 🇳🇱 Vodafone NL:ePDG 实测 109.39.144.148,109.32.0.0/13 由 AS33915 Vodafone Libertel 宣告
+IP-CIDR,109.32.0.0/13,no-resolve
 
 # ==========================================================
 # ⑬ 备注区 —— 停用与未纳入的域名(备查,不产生任何匹配)

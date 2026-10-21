@@ -398,6 +398,9 @@ DOMAIN-SUFFIX,relayfi.com
 DOMAIN-SUFFIX,novo.co
 DOMAIN-SUFFIX,bluevine.com
 
+DOMAIN-KEYWORD,claude
+DOMAIN-KEYWORD,anthropic
+
 # ================================================================
 # 说明:以下几组不在此处
 # ================================================================

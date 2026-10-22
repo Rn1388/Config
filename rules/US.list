@@ -398,8 +398,111 @@ DOMAIN-SUFFIX,relayfi.com
 DOMAIN-SUFFIX,novo.co
 DOMAIN-SUFFIX,bluevine.com
 
+# ================================================================
+# 十二、Meta 系(Facebook / Instagram / WhatsApp / Threads / Messenger / Quest)
+# ================================================================
+# 核实方式:以下域名的 NS 全部是 Meta 自建的
+#   a/b.ns.facebook.com、a/b.ns.instagram.com、a/b.ns.whatsapp.net
+# 注:放进本表后,WhatsApp 会从「社交」组改走美国(US.list 排在 Whatsapp.list 前面)
+#     其它 App 内嵌的 Facebook SDK(graph.facebook.com)也会一起走美国
+
+# ---- Facebook / Meta ----
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,facebook.net
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,fbsbx.com
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,fb.me
+DOMAIN-SUFFIX,fb.gg
+DOMAIN-SUFFIX,fbwat.ch
+DOMAIN-SUFFIX,tfbnw.net
+DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,thefacebook.com
+DOMAIN-SUFFIX,accountkit.com
+DOMAIN-SUFFIX,atdmt.com
+DOMAIN-SUFFIX,facebookblueprint.com
+DOMAIN-SUFFIX,workplace.com
+DOMAIN-SUFFIX,wit.ai
+DOMAIN-SUFFIX,freebasics.com
+DOMAIN-SUFFIX,internet.org
+# ---- Messenger ----
+DOMAIN-SUFFIX,messenger.com
+DOMAIN-SUFFIX,m.me
+# ---- Instagram ----
+DOMAIN-SUFFIX,instagram.com
+DOMAIN-SUFFIX,cdninstagram.com
+DOMAIN-SUFFIX,instagr.am
+DOMAIN-SUFFIX,ig.me
+# ---- Threads(2025 年起主域名从 threads.net 换成 threads.com,两个都收)----
+DOMAIN-SUFFIX,threads.net
+DOMAIN-SUFFIX,threads.com
+# ---- WhatsApp ----
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+DOMAIN-SUFFIX,wa.me
+DOMAIN-SUFFIX,whatsapp.biz
+# ---- Quest / Oculus ----
+DOMAIN-SUFFIX,oculus.com
+DOMAIN-SUFFIX,oculuscdn.com
+# ---- 关键字兜底(这两个词基本只出现在 Meta 自己的域名里)----
+# 不用 facebook / instagram 做关键字:第三方下载站、主题站域名里也常带这两个词
+DOMAIN-KEYWORD,fbcdn
+DOMAIN-KEYWORD,whatsapp
+
+# ---- Meta 自有 IP 段(AS32934 当前宣告的全部前缀,合并后 34 段 IPv4 + 2 段 IPv6)----
+# 来源:RIPEstat announced-prefixes AS32934,2026-10-22 快照
+# App 直连 IP(WhatsApp 通话、Instagram 等)时靠这些命中
+IP-CIDR,31.13.24.0/21,no-resolve
+IP-CIDR,31.13.64.0/18,no-resolve
+IP-CIDR,45.64.40.0/22,no-resolve
+IP-CIDR,57.141.0.0/24,no-resolve
+IP-CIDR,57.141.2.0/23,no-resolve
+IP-CIDR,57.141.4.0/23,no-resolve
+IP-CIDR,57.141.6.0/24,no-resolve
+IP-CIDR,57.141.8.0/24,no-resolve
+IP-CIDR,57.141.10.0/24,no-resolve
+IP-CIDR,57.141.12.0/23,no-resolve
+IP-CIDR,57.141.14.0/24,no-resolve
+IP-CIDR,57.141.16.0/22,no-resolve
+IP-CIDR,57.141.20.0/24,no-resolve
+IP-CIDR,57.141.22.0/24,no-resolve
+IP-CIDR,57.141.24.0/24,no-resolve
+IP-CIDR,57.144.0.0/14,no-resolve
+IP-CIDR,66.220.144.0/20,no-resolve
+IP-CIDR,69.63.176.0/20,no-resolve
+IP-CIDR,69.171.224.0/19,no-resolve
+IP-CIDR,74.119.76.0/22,no-resolve
+IP-CIDR,102.132.96.0/20,no-resolve
+IP-CIDR,103.4.96.0/22,no-resolve
+IP-CIDR,129.134.0.0/17,no-resolve
+IP-CIDR,157.240.0.0/17,no-resolve
+IP-CIDR,157.240.192.0/18,no-resolve
+IP-CIDR,163.70.128.0/17,no-resolve
+IP-CIDR,163.77.132.0/23,no-resolve
+IP-CIDR,163.77.136.0/23,no-resolve
+IP-CIDR,163.77.160.0/20,no-resolve
+IP-CIDR,173.252.64.0/18,no-resolve
+IP-CIDR,179.60.192.0/22,no-resolve
+IP-CIDR,185.60.216.0/22,no-resolve
+IP-CIDR,185.89.216.0/22,no-resolve
+IP-CIDR,204.15.20.0/22,no-resolve
+IP-CIDR6,2620:0:1c00::/40,no-resolve
+IP-CIDR6,2a03:2880::/32,no-resolve
+# 兜底:按 Meta 的自治系统号 AS32934 匹配,自动接住上面快照之外的新网段
+#   mihomo / Stash / Loon 文档均支持规则集内写 IP-ASN;Surge / Shadowrocket 无明确文档,
+#   但 blackmatrix7 四个客户端版本的 Facebook.list 都带这一行
+IP-ASN,32934,no-resolve
+# 未收:metacdn.net(NS 是 NS1,不是 Meta 自建)、metaquest.com(NS 是 ns14.net,归属查不到)
+
+# 新加
 DOMAIN-KEYWORD,claude
 DOMAIN-KEYWORD,anthropic
+
+
+
+
+
 
 # ================================================================
 # 说明:以下几组不在此处

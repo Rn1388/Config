@@ -1,7 +1,7 @@
 # 美国 —— 自定义规则
 # 引用:RULE-SET,<base>/rules/us.list,美国,extended-matching
 # 合并自:US.yaml(已废弃)
-# 最后更新:2026-09-24
+# 最后更新:2026-10-22
 # 说明:只用 DOMAIN-SUFFIX / DOMAIN-KEYWORD / IP-CIDR,Surge / Clash(mihomo,behavior: classical)/ Shadowrocket / Loon 通用
 # 原则:能用 suffix 就不用 keyword,避免误伤同名的非美国站点(如 .ca / .co.uk 分站)
 
@@ -426,6 +426,8 @@ DOMAIN-SUFFIX,workplace.com
 DOMAIN-SUFFIX,wit.ai
 DOMAIN-SUFFIX,freebasics.com
 DOMAIN-SUFFIX,internet.org
+# Meta AI 相关(NS 为 a-d.ns.facebook.com,hatch.metaaivm.com 实测 CNAME 到 c10r.facebook.com)
+DOMAIN-SUFFIX,metaaivm.com
 # ---- Messenger ----
 DOMAIN-SUFFIX,messenger.com
 DOMAIN-SUFFIX,m.me

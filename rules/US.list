@@ -404,7 +404,17 @@ DOMAIN-SUFFIX,bluevine.com
 DOMAIN-KEYWORD,claude
 DOMAIN-KEYWORD,anthropic
 
-
+# ---- mail.com(United Internet / GMX 集团旗下美国邮箱)----
+# NS 与 gmx.com / gmx.net 相同(ns-gmx.ui-dns.biz / .com);网页与 IMAP / SMTP 均在 74.208.x(IONOS 美国机房)
+# 覆盖:www / login / oauth2 / signup / password / account / navigator-lxa / support / search / dl /
+#       imap / smtp / pop 等子域
+DOMAIN-SUFFIX,mail.com
+# 页面实际引用的集团共用资源(NS 均为 United Internet 自建的 *.ui-dns.biz / .com)
+#   注:GMX、WEB.DE 也用这几个主机,加进来后它们的这部分请求也会走美国
+DOMAIN,s.uicdn.com
+DOMAIN,img.ui-portal.de
+DOMAIN,js.ui-portal.de
+DOMAIN,uim.tifbs.net
 
 # ================================================================
 # 说明:以下几组不在此处

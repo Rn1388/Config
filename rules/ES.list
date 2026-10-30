@@ -62,6 +62,16 @@ IP-CIDR,185.40.108.0/22,no-resolve
 #   若改主意走欧洲:取消下面注释,同时删掉 direct.list 里的同名规则。
 DOMAIN-KEYWORD,bankera
 
+# 五、MyFin(保加利亚 Fibank / First Investment Bank 旗下数字钱包)
+# 开发者:First Investment Bank AD,官网 myfin.bg,Android 包名 bg.myfin.myfin
+# myfin.bg 与 fibank.bg 用的是同一组 NS(gate/ns2.fibank.bg)和同一台 MX(smg.fibank.bg)
+DOMAIN-SUFFIX,myfin.bg
+DOMAIN-SUFFIX,fibank.bg
+# Fibank 自有 AS12962,只宣告下面这两段
+IP-CIDR,193.178.166.0/24,no-resolve
+IP-CIDR,87.227.206.0/24,no-resolve
+# IP-ASN,12962,no-resolve
+
 
 # ================================================================
 # 四、Wi-Fi Calling(来源:SimHub,逐条核实)

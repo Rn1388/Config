@@ -170,6 +170,21 @@ DOMAIN-SUFFIX,penfed.org
 DOMAIN-SUFFIX,alliantcreditunion.org
 DOMAIN-SUFFIX,firsttechfed.com
 
+# ---- Nubank 美国(Nu United States LLC;存款与信用卡由 Lead Bank 提供)----
+# App 与巴西是同一个(App Store id814456780,开发者 Nu Pagamentos),美国官网 nu.com/us
+# 以下三个用同一组 Route53 NS(ns-1103 / 1709 / 321 / 840),属同一 AWS 账户
+DOMAIN-SUFFIX,nu.com
+DOMAIN-SUFFIX,nubank.com
+DOMAIN-SUFFIX,nubank.us
+# 主域:app-config / auth / webapp-proxy 等接口
+DOMAIN-SUFFIX,nubank.com.br
+# 美国版 App 实测(2026-11):WAF / rosetta / beacon / mobile-analytics / discovery
+DOMAIN-SUFFIX,nuapp.us
+# 实测:prod-global-discovery-cf.prod.discovery.nu.international(服务发现)
+DOMAIN-SUFFIX,nu.international
+# 合作银行 Lead Bank(Kansas City,FDIC 承保)
+DOMAIN-SUFFIX,lead.bank
+
 # ================================================================
 # 四、Neobank / 支付 / 转账
 # ================================================================

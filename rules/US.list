@@ -403,6 +403,7 @@ DOMAIN-SUFFIX,bluevine.com
 # ================================================================
 DOMAIN-KEYWORD,claude
 DOMAIN-KEYWORD,anthropic
+DOMAIN-SUFFIX,datadoghq.com
 
 # ---- mail.com(United Internet / GMX 集团旗下美国邮箱)----
 # NS 与 gmx.com / gmx.net 相同(ns-gmx.ui-dns.biz / .com);网页与 IMAP / SMTP 均在 74.208.x(IONOS 美国机房)

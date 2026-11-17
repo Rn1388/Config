@@ -3,6 +3,9 @@
 # 合并自:Direct.yaml(已废弃)
 # 最后更新:2026-08-01
 
+# ---- 内网(192.168.8.11)----
+DOMAIN-SUFFIX,home.045319.xyz
+
 # ---- Apple 国内 CDN(须在第三方 Apple 规则集之前生效)----
 DOMAIN-SUFFIX,iphone-ld.apple.com
 DOMAIN-SUFFIX,lcdn-locator.apple.com

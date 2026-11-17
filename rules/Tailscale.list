@@ -5,7 +5,6 @@
 # 最后更新:2026-08-01
 # 依据:https://tailscale.com/kb/1082/firewall-ports(Last validated: Feb 2, 2026)
 
-
 # ==========================================================
 # ① MagicDNS —— tailnet 内部域名
 #    如 nas.tailxxxx.ts.net,解析结果是 100.64.0.0/10 段虚拟 IP,
@@ -112,3 +111,7 @@ IP-CIDR6,fd7a:115c:a1e0::/48,no-resolve
 #   但 [General] 里 udp-policy-not-supported-behaviour = REJECT ——
 #   若这些 UDP 落到不支持 UDP 的节点会被丢弃,打洞失败后退化成 DERP 中继,延迟明显变高。
 #   PROCESS-NAME 指向的组选 DIRECT 即可避开。
+
+
+# ---- 内网(192.168.8.11)----
+DOMAIN-SUFFIX,home.045319.xyz

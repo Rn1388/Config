@@ -173,13 +173,9 @@ DOMAIN-KEYWORD,alliantcreditunion
 DOMAIN-SUFFIX,alliantcu.com
 DOMAIN-SUFFIX,myalliant.com
 # Alliant 依赖的第三方（按需，主要是风控/客服/鉴权）
-# DataDome 反欺诈/风控
-DOMAIN-SUFFIX,datadome.co
 # Glia/SaleMove 在线客服
 DOMAIN-SUFFIX,salemove.com
 DOMAIN-SUFFIX,glia.com
-# ThreatMetrix 设备指纹(cdn 子域 CNAME 到此) ✅ 欧洲广泛使用这是全球性反欺诈基础设施，欧洲银行用得很多，而且和欧洲法规强绑定
-DOMAIN-SUFFIX,online-metrix.net
 # 房贷门户(mortgage 子域跳转)
 DOMAIN-SUFFIX,mymortgage-online.com
 

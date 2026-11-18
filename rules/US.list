@@ -168,6 +168,8 @@ DOMAIN-SUFFIX,navyfederal.org
 DOMAIN-SUFFIX,nfcu.org
 DOMAIN-SUFFIX,penfed.org
 DOMAIN-SUFFIX,alliantcreditunion.org
+DOMAIN-SUFFIX,alliantcreditunion.com
+DOMAIN-KEYWORD,alliantcreditunion
 DOMAIN-SUFFIX,firsttechfed.com
 
 # ---- Nubank 美国(Nu United States LLC;存款与信用卡由 Lead Bank 提供)----

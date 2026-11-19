@@ -212,6 +212,11 @@ IP-CIDR,62.52.0.0/16,no-resolve
 # 🇳🇱 Vodafone NL:ePDG 实测 109.39.144.148,109.32.0.0/13 由 AS33915 Vodafone Libertel 宣告
 IP-CIDR,109.32.0.0/13,no-resolve
 
+# Infini —— 稳定币账户 + Visa/Mastercard 预付虚拟卡,USDT/USDC,USD/EUR 虚拟账户
+# 2026-11-19 实测:App 启动调 api-price.infini.money / gateway.infini.money,均走德国节点已完成
+# 全站 Cloudflare 任播,单条 suffix 覆盖 app / auth / api / api-card / business / checkout / payment / openapi 等全部子域
+DOMAIN-SUFFIX,infini.money
+
 # ==========================================================
 # ⑬ 备注区 —— 停用与未纳入的域名(备查,不产生任何匹配)
 # ==========================================================

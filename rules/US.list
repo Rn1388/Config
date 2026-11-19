@@ -430,6 +430,16 @@ DOMAIN-SUFFIX,bluevine.com
 DOMAIN-KEYWORD,claude
 DOMAIN-KEYWORD,anthropic
 DOMAIN-SUFFIX,datadoghq.com
+DOMAIN-SUFFIX,clau.de
+# Sift 是一家反欺诈公司
+DOMAIN-SUFFIX,siftscience.com
+# Sentry，崩溃和错误上报
+DOMAIN-SUFFIX,us.sentry.io
+
+# --- Anthropic 官方公布的 API 入站 IP 段 ---
+IP-CIDR,160.79.104.0/23,no-resolve
+IP-CIDR,153.61.224.0/22,no-resolve
+IP-CIDR,2607:6bc0::/48,no-resolve
 
 # ---- mail.com(United Internet / GMX 集团旗下美国邮箱)----
 # NS 与 gmx.com / gmx.net 相同(ns-gmx.ui-dns.biz / .com);网页与 IMAP / SMTP 均在 74.208.x(IONOS 美国机房)
